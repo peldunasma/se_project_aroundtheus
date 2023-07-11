@@ -1,0 +1,218 @@
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts.css); 
+@import url(../blocks/page.css);
+
+/* * {
+    box-sizing: border-box; 
+}
+
+.page{
+padding: 0 50px; 
+}  */
+
+.header{
+ margin: 45px auto auto;
+ border-bottom: 1px solid #545454;   
+ max-width: 880px;   
+}
+
+.header__logo{
+    width: 173px; 
+    height: 33px; 
+    margin-bottom: 41px;
+    flex-shrink: 0;
+}
+
+.profile{
+   padding: 55px 0 45px; 
+   display: flex;
+   flex-direction: row; 
+   max-width: 880px;
+   margin: 0 auto; 
+}
+
+.profile__image{
+    max-width: 120px;
+    max-height: 120px;
+    border-radius: 50%;
+    flex-shrink: 0;   
+    background-repeat: no-repeat;
+}
+
+.profile__info{
+    padding: 35px 0 0 35px;
+    display: flex; 
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 455px; 
+}
+
+.profile__info-name{
+    font-size: 42px;
+    font-family: 'Inter', Arial, sans-serif;;
+    font-weight: 500;
+    line-height: 48px;
+    margin: 0; 
+    width: 373px; 
+}
+
+.profile__edit-button{
+    background-image: url(../images/Edit\ Button.svg); 
+    background-position: center;
+    border: 1px solid #fff;
+    width: 24px; 
+    height: 24px; 
+    background-color: transparent;
+    margin: 0 auto;  
+}
+
+ .profile__edit-button:hover{
+    opacity: 0.6; 
+} 
+
+.profile__subtext{
+    font-size: 18px;
+    font-family: 'Inter',Arial, sans-serif;;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    grid-area: description; 
+    margin: 0; 
+}
+
+.profile__add-button{
+    background-image: url(../images/Add\ Button.svg);
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-color: transparent; 
+    border: 2px solid #fff;
+    width: 150px;
+    height: 50px;
+    flex-shrink: 0;
+    margin: 55px 0 0 auto;
+    
+}
+
+.profile__add-button:hover{
+    opacity: 0.6; 
+}
+
+.cards{
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, 282px);
+    max-width: 880px; 
+    grid-gap: 17px; 
+    margin: 0 auto;
+    justify-content: center;  
+}
+
+ .card__item{
+    background: #fff;  
+    width: 282px; 
+    height: 361px; 
+    margin: 0; 
+    border-radius: 15px; 
+} 
+
+.card__image{
+    width: 282px; 
+    height: 282px; 
+    border-radius: 15px 15px 0 0;
+}
+
+.card__item-list{
+    display: flex; 
+    padding-left: 0;
+    margin: 0;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.card__description{
+    color: #000;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: normal;
+    margin-left: 20px;
+    white-space: nowrap;
+    max-width: 200px; 
+    overflow:hidden; 
+    text-overflow: ellipsis;
+}
+
+.card__like-button{
+    background-image: url(../images/Group.svg);
+    width: 21px; 
+    height: 18px; 
+    padding: 0; 
+    border-style: none; 
+    margin-right: 30px; 
+}
+
+.card__like-button:hover{
+    opacity: 0.6; 
+}
+
+.footer{
+    margin: 0 auto; 
+    max-width: 880px;
+    padding: 60px 0 60px 0;
+}
+
+.footer__text{ 
+    color: #545454;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+ 
+@media screen and (max-width: 696px){
+    
+    .header__logo{
+        margin-left: 27px;
+        margin-top: 60px; 
+        max-width: 126px; 
+        margin: 27px auto;
+    }
+    
+    .profile{
+        flex-direction: column;
+        align-items: center; 
+    }
+
+    .profile__info{
+        align-items: center;
+        max-width: 283px; 
+        margin: 0 auto; 
+    }
+
+    .profile__info-name{
+        font-size: 22px;
+        max-width: 196px; 
+    }
+
+    .profile__subtext{ 
+        font-size: 14px;
+        margin: 0 auto;  
+    }
+
+    .profile__add-button{
+        width: 100%;  
+        max-width: 282px; 
+        min-height: 60px;
+        background-repeat: no-repeat;
+        margin: 36px auto 0;      
+    }
+
+     .footer{
+        display: flex; 
+        flex-direction: column;
+        align-items: center;
+    } 
+
+}
+
+
