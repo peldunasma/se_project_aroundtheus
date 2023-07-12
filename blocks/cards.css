@@ -21,12 +21,12 @@
     
 } 
 .card__image{
-    width: 282px; 
-    height: 282px; 
+    width: 282px;
+    height: 282px;
     border-radius: 15px 15px 0 0;
 }
 .card__footer{
-    display: flex; 
+    display: flex;
     padding-left: 0;
     margin: 0;
     align-items: center;
@@ -41,15 +41,15 @@
     line-height: normal;
     margin-left: 20px;
     white-space: nowrap;
-    max-width: 200px; 
-    overflow:hidden; 
+    max-width: 200px;
+    overflow:hidden;
     text-overflow: ellipsis;
 }
 
 .card__like-button{
     background-image: url(../images/Group.svg);
-    width: 21px; 
-    min-height: 18px; 
+    width: 21px;
+    min-height: 18px;
     padding: 0; 
     border-style: none; 
     margin-right: 30px; 
