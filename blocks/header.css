@@ -6,8 +6,27 @@
    
    .header__logo{
        width: 173px; 
-       height: 33px; 
+       min-height: 33px; 
        margin-bottom: 41px;
        flex-shrink: 0;
    }
-   
+
+   @media screen and (max-width: 695px){
+    .header{
+        margin: 0; 
+    }
+    
+    .header__logo{
+        margin-left: 27px;
+        margin-top: 60px; 
+        max-width: 126px; 
+        margin: 27px auto;
+    }
+    
+   }
+
+    @media screen and (max-width: 345px){
+        .header{
+            margin: 0; 
+        }     
+    }

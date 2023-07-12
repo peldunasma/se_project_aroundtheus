@@ -7,5 +7,12 @@
     font-family: Inter, Arial, Helvetica, sans-serif;
     background-color:black; 
     color: #fff; 
+    width: 100%; 
     max-width: 1280px; 
+}
+
+@media screen and (max-width: 345px){
+    .page{
+        padding: 19px; 
+    }
 }
