@@ -9,9 +9,9 @@ This is the third project for Web Development program at Triple Ten. For this pr
 * Grid layouts 
 * Flexbox
   
-**Figma**  
+**Github**  
   
-* [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)  
+* [Link to the project on Github](https://peldunasma.github.io/se_project_aroundtheus/)  
   
 **Images**  
 
