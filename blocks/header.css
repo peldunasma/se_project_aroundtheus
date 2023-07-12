@@ -11,7 +11,7 @@
        flex-shrink: 0;
    }
 
-   @media screen and (max-width: 695px){
+     @media screen and (max-width: 695px){
     .header{
         margin: 0; 
     }
@@ -23,10 +23,10 @@
         margin: 27px auto;
     }
     
-   }
+   }  
 
     @media screen and (max-width: 345px){
         .header{
             margin: 0; 
         }     
-    }
+    } 
