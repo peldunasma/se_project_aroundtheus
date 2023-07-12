@@ -1,6 +1,6 @@
 .header{
     margin: 45px auto auto;
-    border-bottom: 1px solid #545454;  
+    border-bottom: 1px solid #545454; 
     max-width: 880px;   
    }
    
@@ -19,7 +19,7 @@
     .header__logo{
         margin-left: 27px;
         margin-top: 60px;
-        max-width: 126px; 
+        max-width: 126px;
         margin: 27px auto;
     }
     
