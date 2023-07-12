@@ -1,14 +1,13 @@
 # Project 3: Around The U.S.
+This is the third project for Web Development program at Triple Ten. The project is about creating a responsive website to adapt to different screen dimensions (i.e. 1280px, 800px, 320px). A Figma example was used for comparisons to creating the different layouts. 
 
-### Overview  
+### Project features  
 
-* Intro  
-* Figma  
-* Images  
-  
-**Intro**
-  
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
+* Html
+* CSS
+* Media query
+* Grid layouts 
+* Flexbox
   
 **Figma**  
   
