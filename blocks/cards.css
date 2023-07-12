@@ -17,14 +17,15 @@
     width: 282px;
     min-height: 361px;
     margin: 0;
-    border-radius: 15px;
-    
-} 
+    border-radius: 15px;   
+}
+
 .card__image{
     width: 282px;
     height: 282px;
     border-radius: 15px 15px 0 0;
 }
+
 .card__footer{
     display: flex;
     padding-left: 0;
@@ -52,10 +53,10 @@
     min-height: 18px;
     padding: 0;
     border-style: none;
-    margin-right: 30px; 
+    margin-right: 30px;
 }
 
 .card__like-button:hover{
-    opacity: 0.6; 
+    opacity: 0.6;
 }
 

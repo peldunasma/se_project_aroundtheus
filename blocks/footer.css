@@ -28,14 +28,14 @@
         align-items: center;
         flex-wrap: nowrap;
         max-width: 300px;
-    } 
-}  
+    }
+}
 
 @media screen and (max-width: 345px){
     .footer{
         padding-bottom: 0;  
     }
-    .footer__text{ 
-        margin-bottom: 36px; 
+    .footer__text{
+        margin-bottom: 36px;
     }
 }
