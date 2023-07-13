@@ -48,7 +48,7 @@
      width: 24px;
      height: 24px;
      grid-area: button;
-     margin: 0 auto; 
+     margin: 0 auto;
      background-size: 16px;
  }
  
@@ -221,7 +221,7 @@
     }
     .profile__add-button{
         margin: 24px auto;
-        max-width: 282px; 
+        max-width: 282px;
         background-size: 16px;
     }
 }
