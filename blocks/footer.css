@@ -15,7 +15,7 @@
     margin: 0; 
 }
 
- @media screen and (max-width: 823px){
+ /* @media screen and (max-width: 823px){
     .footer{
         margin: 0 auto;
         align-items: flex-start;
@@ -29,7 +29,6 @@
         flex-direction: row;
         align-items: center;
         flex-wrap: nowrap;
-        max-width: 300px;
     }
 } 
 
@@ -41,5 +40,16 @@
     .footer__text{
         font-size: 14px;
         margin-bottom: 0;
+    }
+} */
+
+@media screen and (max-width: 594px){
+    .footer{
+        padding-top: 48px; 
+        padding-bottom: 36px;
+        margin: 0 auto; 
+    }
+    .footer__text{
+        font-size: 14px;  
     }
 }
