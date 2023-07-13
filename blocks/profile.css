@@ -85,7 +85,7 @@
      opacity: 0.6;
  }
 
- @media screen and (max-width: 823px){
+   @media screen and (max-width: 823px){
     .profile{
         max-width: 650px;
     }
@@ -104,25 +104,25 @@
     .profile__edit-button{
         margin: auto;
     }
-    .profile__add-button{
+    /* .profile__add-button{
         margin: 24px 0 0 auto;
-    }
- }
+    } */
+ }  
 
-   /* @media screen and (max-width: 725px) and (min-width: 695px){
+    @media screen and (max-width: 725px) and (min-width: 695px){
 
     .profile__title{
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
     }
-} */
+}  
 
-   @media screen and (max-width: 695px){
+    @media screen and (max-width: 695px){
     .profile{
         flex-direction: row;
         align-items: center;
-        /* max-width: 400px; */
+        max-width: 550px; 
     }
 
     .profile__info{
@@ -141,16 +141,14 @@
 
     .profile__description{
         font-size: 14px;
-        margin: 0 auto; 
     }
 
     .profile__add-button{
         width: 100%;
         min-height: 50px;
-        background-repeat: no-repeat;
-        margin: 36px auto 0;    
+        background-repeat: no-repeat;   
     }
-} 
+}  
 
 @media screen and (max-width: 345px){
     .profile{
@@ -164,9 +162,16 @@
         margin: 0 auto;
     }
 
+    .profile__description{
+        margin: 0 auto; 
+    }
+
      .profile__edit-button{
         width: 18px;
         height: 18px;
         background-size: contain;  
     } 
+    .profile__add-button{
+        max-width: 280px; 
+    }
 }
