@@ -2,7 +2,8 @@
     margin: 0 auto;
     max-width: 880px;
     padding-top: 67px;
-    padding-bottom: 60px;  
+    padding-bottom: 60px;
+    padding-left: 50px;   
 }
 
 .footer__text{ 
@@ -48,8 +49,10 @@
         padding-top: 48px;
         padding-bottom: 36px;
         margin: 0 auto; 
+        padding-left: 0;  
     }
     .footer__text{
-        font-size: 14px;  
+        font-size: 14px;
+        margin-left: 19px;  
     }
 }
