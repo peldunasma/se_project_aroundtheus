@@ -2,8 +2,7 @@
     margin: 0 auto;
     max-width: 880px;
     padding-top: 67px;
-    padding-bottom: 60px;
-    padding-left: 50px;   
+    padding-bottom: 60px;  
 }
 
 .footer__text{ 
@@ -15,34 +14,6 @@
     line-height: normal;
     margin: 0; 
 }
-
- /* @media screen and (max-width: 823px){
-    .footer{
-        margin: 0 auto;
-        align-items: flex-start;
-        max-width: 600px; 
-    }
-} 
-
-  @media screen and (max-width: 695px){
-    .footer{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        flex-wrap: nowrap;
-    }
-} 
-
-@media screen and (max-width: 345px){
-    .footer{
-        padding-top: 48px;
-        padding-bottom: 36px;  
-    }
-    .footer__text{
-        font-size: 14px;
-        margin-bottom: 0;
-    }
-} */
 
 @media screen and (max-width: 594px){
     .footer{
