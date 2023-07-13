@@ -1,0 +1,46 @@
+.card{
+    background: #fff;
+    margin: 0;
+    border-radius: 15px;   
+}
+
+.card__image{
+    width: 282px;
+    height: 282px;
+    border-radius: 15px 15px 0 0; 
+    background-size: cover; 
+}
+
+.card__footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 30px 25px 20px; 
+}
+
+.card__description{
+    color: #000;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: normal;
+    white-space: nowrap;
+    max-width: 200px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    margin: 0; 
+}
+
+.card__like-button{
+    background-image: url(../images/Group.svg);
+    background-color: transparent;
+    width: 21px;
+    min-height: 18px;
+    border-style: none;
+}
+
+.card__like-button:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+

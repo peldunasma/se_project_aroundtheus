@@ -1,6 +1,6 @@
 .header{
-    margin: 45px auto auto;
-    border-bottom: 1px solid #545454;
+    margin: 45px auto; 
+    border-bottom: 1px solid rgba(84,84,84,0.6);
     max-width: 880px;  
    }
    
@@ -9,6 +9,7 @@
        min-height: 33px;
        margin-bottom: 41px;
        flex-shrink: 0;
+       padding-left: 45px; 
    }
 
      @media screen and (max-width: 695px){
@@ -24,9 +25,3 @@
     }
     
    } 
-
-    @media screen and (max-width: 345px){
-        .header{
-            margin: 0;
-        }  
-    }
