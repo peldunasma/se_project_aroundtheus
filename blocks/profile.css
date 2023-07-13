@@ -104,9 +104,6 @@
     .profile__edit-button{
         margin: auto;
     }
-    /* .profile__add-button{
-        margin: 24px 0 0 auto;
-    } */
  }  
 
     @media screen and (max-width: 725px) and (min-width: 695px){
