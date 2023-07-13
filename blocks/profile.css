@@ -205,11 +205,11 @@
         font-size: 14px;
     }
     .profile__edit-button{
-        height: 18px; 
+        height: 18px;
         width: 18px; 
     }
     .profile__add-button{
-        margin: 24px auto; 
+        margin: 24px auto;
         max-width: 282px; 
     }
 }
