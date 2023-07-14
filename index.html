@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Around the U.S.</title>
@@ -8,75 +8,71 @@
     <meta name="author" content="Matthew Peldunas" />
     <meta name="keywords" content="HTML, CSS, Javascript" />
     <link rel="stylesheet" href="./pages/index.css" />
-</head>
-<body class="page">
+  </head>
+  <body class="page">
     <header class="header">
-        <img class="header__logo" 
-        src="./images/icon.svg" 
-        alt="Around the U.S.">
+      <img class="header__logo" src="./images/icon.svg" alt="Around the U.S." />
     </header>
 
-    <main class="content"> 
-        <section class="profile">
-            <img class="profile__image" 
-            src="./images/jacques-cousteau-2.jpg" 
-            alt="Avatar">
-            <div class="profile__info">
-                <h1 class="profile__title">Jacques Cousteau</h1>
-                <button class="profile__edit-button" type="button"></button>
-                <p class="profile__description">Explorer</p>
+    <main class="content">
+      <section class="profile">
+        <img class="profile__image" src="./images/jacques-cousteau-2.jpg" alt="Avatar" />
+        <div class="profile__info">
+          <h1 class="profile__title">Jacques Cousteau</h1>
+          <button class="profile__edit-button" type="button"></button>
+          <p class="profile__description">Explorer</p>
+        </div>
+        <button class="profile__add-button" type="button"></button>
+      </section>
+      <section class="cards">
+        <ul class="cards__list">
+          <li class="card">
+            <img src="./images/yosemite.jpg" alt="yosemite" class="card__image" />
+            <div class="card__footer">
+              <h2 class="card__description">Yosemite Valley</h2>
+              <button class="card__like-button" type="button"></button>
             </div>
-            <button class="profile__add-button" type="button"></button> 
-        </section>
-        <section class="cards">
-            <ul class="cards__list">
-                <li class="card">
-                <img src="./images/yosemite.jpg" alt="yosemite" class="card__image"> 
-                <div class="card__footer">
-                <h2 class="card__description">Yosemite Valley</h2>
-                <button class="card__like-button" type="button"></button>
-                </div>
-                </li>
-                <li class="card">
-                    <img src="./images/lake-louise.jpg" alt="yosemite" class="card__image"> 
-                <div class="card__footer">
-                <h2 class="card__description">Lake Louise</h2>
-                <button class="card__like-button" type="button"></button>
-                </div>
-            </li>
-            <li class="card">
-                <img src="./images/bald-mountains.jpg" alt="bald mountians" class="card__image">
-                <div class="card__footer">
-                <h2 class="card__description">Bald Mountians</h2>
-                <button class="card__like-button" type="button"></button>
-                </div>
-            </li>
-            <li class="card">
-                <img src="./images/latemar.jpg" alt="latemar" class="card__image">
-                <div class="card__footer">
-                <h2 class="card__description">Latemar</h2>
-                <button class="card__like-button" type="button"></button>
-                </div>
-            </li>
-            <li class="card">
-                <img src="./images/vanoise.jpg" alt="vanoise" class="card__image">
-                <div class="card__footer">
-                <h2 class="card__description">Vanoise National Park</h2>
-                <button class="card__like-button" type="button"></button>
-                </div>
-            </li>
-            <li class="card">
-                <img src="./images/lago.jpg" alt="lago" class="card__image">
-                <div class="card__footer">
-                <h2 class="card__description">Lago di Braies</h2>
-                <button class="card__like-button" type="button"></button>
-                </div>
-            </li> 
-            </ul>
-        </section>
+          </li>
+          <li class="card">
+            <img src="./images/lake-louise.jpg" alt="yosemite" class="card__image" />
+            <div class="card__footer">
+              <h2 class="card__description">Lake Louise</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="./images/bald-mountains.jpg" alt="bald mountians" class="card__image" />
+            <div class="card__footer">
+              <h2 class="card__description">Bald Mountians</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="./images/latemar.jpg" alt="latemar" class="card__image" />
+            <div class="card__footer">
+              <h2 class="card__description">Latemar</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="./images/vanoise.jpg" alt="vanoise" class="card__image" />
+            <div class="card__footer">
+              <h2 class="card__description">Vanoise National Park</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="./images/lago.jpg" alt="lago" class="card__image" />
+            <div class="card__footer">
+              <h2 class="card__description">Lago di Braies</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
     </main>
     <footer class="footer">
-        <p class="footer__text">© 2022 Around The U.S.</p>
-    </footer> 
-</body>
+      <p class="footer__text">© 2022 Around The U.S.</p>
+    </footer>
+  </body>
 </html>
