@@ -91,11 +91,7 @@
 .modal__image-description{
     width: 291px; 
     height: 12px; 
-    color: white; 
-    font-family: 'Inter', Arial, sans-serif;
     font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
     line-height: normal;
     position: absolute; 
 }
