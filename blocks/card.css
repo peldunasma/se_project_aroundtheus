@@ -1,7 +1,8 @@
 .card{
     background: #fff;
     margin: 0;
-    border-radius: 15px;   
+    border-radius: 15px;
+    position: relative;    
 }
 
 .card__image{
@@ -9,6 +10,24 @@
     height: 282px;
     border-radius: 15px 15px 0 0;
     background-size: cover; 
+}
+
+.card__delete-button{ 
+  position: absolute;
+  background-image: url(../images/delete-button.svg);
+  background-color: transparent;
+  border: none;
+  width: 18px;
+  height: 19.3px;
+  right: 0;
+  top: 0px;
+  margin-top: 15px;
+  margin-right: 18px;
+}
+
+.card__delete-button:hover{
+    opacity: 0.5;
+    cursor: pointer;
 }
 
 .card__footer{

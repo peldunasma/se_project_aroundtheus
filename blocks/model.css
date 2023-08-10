@@ -76,8 +76,33 @@
     transition: 0.5s ease-in;
 }
 
+.modal__image{
+    width: 433px;
+    height: 540px;
+    max-width: 75vw;
+    max-height: 75vh; 
+}
+
+.modal__image-container{
+    margin: auto; 
+    position: relative; 
+}
+
+.modal__image-description{
+    width: 291px; 
+    height: 12px; 
+    color: white; 
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    position: absolute; 
+}
+
 @media  screen and (max-width: 594px) {
     .modal__container{
+        max-width: 282px;
         padding: 25px;
     }
     .modal__close{
@@ -86,6 +111,7 @@
         bottom: calc(100% + 15px);
         left: calc(100% + -25px);   
     }
+
     .modal__heading{
         font-size: 18px;
     }
@@ -99,6 +125,11 @@
     .modal__button{
         margin-top: 45px; 
         font-size: 14px; 
+    }
+
+    .modal__image{
+        max-width: 240px;
+        max-height: 299px;
     }
     
 }
