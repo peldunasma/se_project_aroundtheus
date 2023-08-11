@@ -36,7 +36,7 @@
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
         <button class="modal__close" id="modal-close-button"></button>
-        <p class="modal__heading">Edit profile</p>
+        <h2 class="modal__heading">Edit profile</h2>
         <form class="modal__form">
           <input type="text" class="modal__input" placeholder="Name" id="profile-name-input">
           <input type="text" class="modal__input" placeholder="Description" id="profile-description-input">
@@ -48,14 +48,14 @@
     <!-- Add card modal -->
     <div class="modal" id="profile-add-modal">
       <div class="modal__container">
-        <button class="modal__close"></button>
-        <p class="modal__heading">New place</p>
+        <button class="modal__close" type="submit"></button>
+        <h2 class="modal__heading">New place</h2>
         <form class="modal__form" id="add-card-form">
           <input type="text" class="modal__input modal__input_type_title" 
           name="title" placeholder="Title" id="profile-title-input">
-          <input type="text" class="modal__input modal__input_type_url" 
+          <input type="url" class="modal__input modal__input_type_url" 
           name="url" placeholder="Image URL" id="profile-url-input">
-          <button class="modal__button">Create</button> 
+          <button class="modal__button" type="submit">Create</button> 
         </form>
       </div>
     </div>
@@ -63,7 +63,7 @@
     <!-- Image modal popup -->
     <div class="modal" id="modal-image">
       <div class="modal__image-container">
-        <button class="modal__close"></button>
+        <button class="modal__close" type="submit"></button>
         <img src="#" alt="" class="modal__image">
         <p class="modal__image-description"></p>
       </div>
@@ -74,10 +74,10 @@
             <div class="card__footer">
               <h2 class="card__description"></h2>
               <button class="card__like-button" type="button"></button>
-              <button class="card__delete-button"></button>
+              <button class="card__delete-button" type="submit"></button>
             </div>
           </li>
     </template>
-    <script src="./scripts/index.js"></script>
+    <script src="./scripts/index.js" defer></script>
   </body>
 </html>

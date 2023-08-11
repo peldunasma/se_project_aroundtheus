@@ -10,6 +10,7 @@
     height: 282px;
     border-radius: 15px 15px 0 0;
     background-size: cover; 
+    cursor: pointer; 
 }
 
 .card__delete-button{ 
@@ -59,12 +60,13 @@
     transition: 0.5s ease-in;
 }
 
-.card__like-button_active{
-    background-image: url(../images/like-active.svg);
-}
-
 .card__like-button:hover{
     opacity: 0.5;
     cursor: pointer;
 }
+
+.card__like-button_active{
+    background-image: url(../images/like-active.svg);
+}
+
 
