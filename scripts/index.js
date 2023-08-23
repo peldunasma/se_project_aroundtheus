@@ -147,18 +147,12 @@ profileNameInput.value = profileName.textContent;
 profileDescriptionInput.value = profileDescription.textContent;
 openModal(profileEditModal);
 });
-profileModalCloseBtn.addEventListener('click', () => closeModal(profileEditModal));
 profileEditForm.addEventListener('submit', handleProfileEditSubmit);
 
 // Add new card
 
 addNewCardBtn.addEventListener('click', () => openModal(profileAddModal));
-addCardModalCloseBtn.addEventListener('click', () => closeModal(profileAddModal));
 addNewCardForm.addEventListener('submit', handleAddCardSubmit);
-
-// Image popup
-
-imageModalCloseBtn.addEventListener('click', () => closeModal(imageModalPopup));
 
 //Keyboard events
 
