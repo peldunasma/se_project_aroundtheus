@@ -89,25 +89,38 @@ function closeModal(modal) {
   document.removeEventListener("keydown", handleEscFunction);
 }
 
-function getCardElement(data) { 
-  const cardElement = cardTemplate.cloneNode(true); 
-  const cardImageEl = cardElement.querySelector(".card__image"); 
-  const cardTitleEl = cardElement.querySelector(".card__description");
+// function getCardElement(data) {
+//   const cardElement = cardTemplate.cloneNode(true);
+//   const cardImageEl = cardElement.querySelector(".card__image");
+//   const cardTitleEl = cardElement.querySelector(".card__description");
+//   const likeButton = cardElement.querySelector(".card__like-button");
 
-  cardImageEl.setAttribute("src", data.link); 
-  cardImageEl.setAttribute("alt", data.name); 
-  cardTitleEl.textContent = data.name; 
+//   likeButton.addEventListener("click", () => {
+//   likeButton.classList.toggle("card__like-button_active");
+//   });
 
-  cardImageEl.addEventListener("click", () => { 
-    modalImage.setAttribute("src", data.link); 
-    modalImage.setAttribute("alt", data.name); 
-    imageModalDescription.textContent = data.name; 
-    openModal(imageModalPopup); 
+//   const deleteButton = cardElement.querySelector(".card__delete-button");
+//   deleteButton.addEventListener("click", () => {
+//   cardElement.remove();
+//   });
 
-  }); 
-    return cardElement; 
+//   cardImageEl.setAttribute("src", data.link);
+//   cardImageEl.setAttribute("alt", data.name);
+//   cardTitleEl.textContent = data.name;
 
-} 
+//   cardImageEl.addEventListener("click", () => {
+//     modalImage.setAttribute("src", data.link);
+//     modalImage.setAttribute("alt", data.name);
+//     imageModalDescription.textContent = data.name;
+//     openModal(imageModalPopup);
+//   });
+//    return cardElement;
+// }
+
+function createCard(item) {
+const card = new Card(item, "#card-template", handleImageClick);
+return card.getView();
+}
 
 /* -------------------------------------------------------------------------- */
 /*                               Event Handlers                               */
@@ -122,8 +135,8 @@ const handleImageClick = (card) => {
   openModal(imageModalPopup);
 
 }
-function renderCard(data) {
-  const cardElement = getCardElement(data);
+function renderCard(cardData) {
+  const cardElement = createCard(cardData);
   cardListEl.prepend(cardElement);
 }
 
@@ -205,9 +218,6 @@ const cardData = {
   name: "Yosemite Valley",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 }
-
-const card = new Card(cardData, "#card-template", handleImageClick);
-card.getView();
 
 //* FormValidator.js logic
 
