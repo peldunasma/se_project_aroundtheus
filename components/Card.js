@@ -41,10 +41,6 @@ export default class Card {
         this._cardElement = null; 
     }
 
-    _handleImageOpen() {
-        this._handleImageClick.classList.add("modal_opened");
-    }
-
     getView() {
         //get card view
         this._cardElement = document
@@ -56,6 +52,7 @@ export default class Card {
         this._setEventListeners(); 
 
         this._cardElement.querySelector(".card__image").src = this._link;
+        this._cardElement.querySelector(".card__image").alt = this._name;
         this._cardElement.querySelector(".card__description").textContent =
         this._name;
         //return the card
