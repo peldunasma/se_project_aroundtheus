@@ -89,40 +89,33 @@ function closeModal(modal) {
   document.removeEventListener("keydown", handleEscFunction);
 }
 
-// function getCardElement(data) {
-//   const cardElement = cardTemplate.cloneNode(true);
-//   const cardImageEl = cardElement.querySelector(".card__image");
-//   const cardTitleEl = cardElement.querySelector(".card__description");
-//   const likeButton = cardElement.querySelector(".card__like-button");
+function getCardElement(data) { 
+  const cardElement = cardTemplate.cloneNode(true); 
+  const cardImageEl = cardElement.querySelector(".card__image"); 
+  const cardTitleEl = cardElement.querySelector(".card__description");
 
-//   likeButton.addEventListener("click", () => {
-//   likeButton.classList.toggle("card__like-button_active");
-//   });
+  cardImageEl.setAttribute("src", data.link); 
+  cardImageEl.setAttribute("alt", data.name); 
+  cardTitleEl.textContent = data.name; 
 
-//   const deleteButton = cardElement.querySelector(".card__delete-button");
-//   deleteButton.addEventListener("click", () => {
-//   cardElement.remove();
-//   });
+  cardImageEl.addEventListener("click", () => { 
+    modalImage.setAttribute("src", data.link); 
+    modalImage.setAttribute("alt", data.name); 
+    imageModalDescription.textContent = data.name; 
+    openModal(imageModalPopup); 
 
-//   cardImageEl.setAttribute("src", data.link);
-//   cardImageEl.setAttribute("alt", data.name);
-//   cardTitleEl.textContent = data.name;
+  }); 
+    return cardElement; 
 
-//   cardImageEl.addEventListener("click", () => {
-//     modalImage.setAttribute("src", data.link);
-//     modalImage.setAttribute("alt", data.name);
-//     imageModalDescription.textContent = data.name;
-//     openModal(imageModalPopup);
-//   });
-//    return cardElement;
-// }
+} 
 
 /* -------------------------------------------------------------------------- */
 /*                               Event Handlers                               */
 /* -------------------------------------------------------------------------- */
+
 const handleImageClick = (card) => {
-  console.log('The image was clicked', card, modalImage, imageModalDescription);
   modalImage.src = card._link;
+  modalImage.alt = card._name;
   imageModalDescription.textContent = card._name;  
 
   //open the image modal
@@ -130,8 +123,7 @@ const handleImageClick = (card) => {
 
 }
 function renderCard(data) {
-  const card = new Card(data, "#card-template", handleImageClick);
-  const cardElement = card.getView();
+  const cardElement = getCardElement(data);
   cardListEl.prepend(cardElement);
 }
 
@@ -155,6 +147,7 @@ function handleAddCardSubmit(evt) {
   );
   closeModal(profileAddModal);
   addNewCardForm.reset();
+  addCardFormValidator._toggleButtonState();
 }
 
 /* -------------------------------------------------------------------------- */
@@ -213,9 +206,6 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 }
 
-const card = new Card(cardData, "#card-template", handleImageClick);
-card.getView();
-
 //* FormValidator.js logic
 
 const config = {
@@ -227,11 +217,8 @@ const config = {
   errorClass: "modal__error_visible",
 };
 
-const addCardFormEl = document.querySelector('#add-card-form');
-const editCardFormEl = document.querySelector('#edit-card-form');
-
-const addCardFormValidator = new FormValidator(config, addCardFormEl);
+const addCardFormValidator = new FormValidator(config, addNewCardForm);
 addCardFormValidator.enableValidation();
 
-const editCardFormValidator = new FormValidator(config, editCardFormEl);
+const editCardFormValidator = new FormValidator(config, profileEditForm);
 editCardFormValidator.enableValidation();
