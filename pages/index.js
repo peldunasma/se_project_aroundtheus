@@ -99,9 +99,9 @@ return card.getView();
 /* -------------------------------------------------------------------------- */
 
 const handleImageClick = (card) => {
-  modalImage.src = card._link;
-  modalImage.alt = card._name;
-  imageModalDescription.textContent = card._name;  
+  modalImage.src = card.link;
+  modalImage.alt = card.name;
+  imageModalDescription.textContent = card.name;  
 
   //open the image modal
   openModal(imageModalPopup);
