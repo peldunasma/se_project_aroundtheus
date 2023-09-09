@@ -26,7 +26,6 @@ export default class Card {
        .addEventListener("click", () => { 
         this._handleImageClick(this); 
        });
-
     }
 
     _handleLikeIcon() {
