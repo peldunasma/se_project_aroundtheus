@@ -1,4 +1,10 @@
+//Purpose: sets settings for validating form fields
+
 export default class FormValidator {
+  //constructor gets passed the following arguments: 
+  //settings object that stores selectors and form classes, 
+  //and the second one takes a form element to be validated.
+
   constructor(options, formEl) {
     this._inputSelector = options.inputSelector;
     this._submitButtonSelector = options.submitButtonSelector;
@@ -22,6 +28,7 @@ export default class FormValidator {
     errorMessageEl.classList.remove(this._errorClass);
   }
 
+  //checks the validity 
   _checkInputValidity(inputEl) {
     if (!inputEl.validity.valid) {
       this._showInputError(inputEl);
@@ -69,6 +76,7 @@ export default class FormValidator {
     });
   }
 
+  //enables form validation
   enableValidation() {
     this._formEl.addEventListener("submit", (evt) => {
       evt.preventDefault();

@@ -1,8 +1,15 @@
+//This creates a card with text and an image link, along with the appropriate handlers
+//Purpose: intentded to replace getCardElement function
+
 export default class Card {
+  //constructor gets passed the following arguments: data, cardSelector, handleImageClick
   constructor({ name, link }, cardSelector, handleImageClick) {
+    //an object containing the card's text and a link to its image 
     this._name = name;
     this._link = link;
+    // a selector string for the corresponding <template> element
     this._cardSelector = cardSelector;
+    //a function that handles the opening of the preview picture modal.
     this._handleImageClick = handleImageClick;
   }
 
@@ -24,6 +31,7 @@ export default class Card {
     this._cardElement
       .querySelector(".card__image")
       .addEventListener("click", () => {
+        //passing this as an argument ensures that all data is passed to the handler (including: name and link of card) 
         this._handleImageClick(this);
       });
   }
@@ -44,6 +52,7 @@ export default class Card {
     this._cardElement = null;
   }
 
+  //returns a fully functional card element populated with the appropriate data 
   getView() {
     //get card view
     this._cardElement = document
