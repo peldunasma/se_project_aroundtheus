@@ -116,11 +116,12 @@ function renderCard(cardData) {
   cardListEl.prepend(cardElement);
 }
 
-function handleProfileEditSubmit(evt) {
+function handleProfileEditSubmit(data) {
   evt.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  closeModal(profileEditModal);
+  //added close 
+  profileForm.close();
 }
 
 function handleAddCardSubmit(data) {
@@ -134,7 +135,8 @@ function handleAddCardSubmit(data) {
     },
     cardListEl
   );
-  closeModal(profileAddModal);
+  //added close
+  addCardForm.close();
   addNewCardForm.reset();
   addCardFormValidator.toggleButtonState();
 }
@@ -145,17 +147,17 @@ function handleAddCardSubmit(data) {
 
 //Edit profile
 
-profileEditBtn.addEventListener("click", () => {
-  profileNameInput.value = profileName.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
-  openModal(profileEditModal);
-});
-profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+// profileEditBtn.addEventListener("click", () => {
+//   profileNameInput.value = profileName.textContent;
+//   profileDescriptionInput.value = profileDescription.textContent;
+//   openModal(profileEditModal);
+// });
+// profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 // Add new card
 
-addNewCardBtn.addEventListener("click", () => openModal(profileAddModal));
-addNewCardForm.addEventListener("submit", handleAddCardSubmit);
+// addNewCardBtn.addEventListener("click", () => openModal(profileAddModal));
+// addNewCardForm.addEventListener("submit", handleAddCardSubmit);
 
 //Keyboard events
 
@@ -164,7 +166,8 @@ profileEditModal.addEventListener("mousedown", function (event) {
     event.target.classList.contains("modal") ||
     event.target.classList.contains("modal__close")
   ) {
-    closeModal(profileEditModal);
+    //added close
+    profileForm.close();
   }
 });
 
@@ -173,7 +176,8 @@ profileAddModal.addEventListener("mousedown", function (event) {
     event.target.classList.contains("modal") ||
     event.target.classList.contains("modal__close")
   ) {
-    closeModal(profileAddModal);
+    //added close
+    addCardForm.close();
   }
 });
 
@@ -213,7 +217,7 @@ const editCardFormValidator = new FormValidator(config, profileEditForm);
 editCardFormValidator.enableValidation();
 
 //popupWithForm.js (Edit Form)
-const profileForm = new PopupWithForm('#profile-add-modal', () => {
+const profileForm = new PopupWithForm('#profile-edit-modal', () => {
 });
 
 profileEditBtn.addEventListener("click", () => {
@@ -222,6 +226,7 @@ profileEditBtn.addEventListener("click", () => {
   profileForm.open();
 });
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+
 
 //popupWithForm.js (Add Form)
 
@@ -234,6 +239,7 @@ addNewCardBtn.addEventListener("click", () => {
 });
 
 addNewCardForm.addEventListener("submit", handleAddCardSubmit);
+
 
 
 //set submission handlers to popups edit and add 
