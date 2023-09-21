@@ -22,13 +22,13 @@ export default class PopupWithForm extends Popup {
 
     setEventListeners() {
        this._popupForm.addEventListener('submit', (evt) => {
-        this.handleFormSubmit(this._getInputValues());
+        this._handleFormSubmit(this._getInputValues());
        }); 
        this._popupCloseForm.addEventListener('click', () => {
         this.close();
        })
         super.setEventListeners();      
-    }
+    } 
 
     close() {
         this._popupForm.reset();
@@ -36,11 +36,4 @@ export default class PopupWithForm extends Popup {
     }
 
 }
-
-// index.js 
-
-// const newFormPopup = new PopupWithForm('#profile-add-modal', () => {});
-// newFormPopup.open()
-
-// newFormPopup.close();
 

@@ -2,6 +2,7 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import "./index.css";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
 
 const initialCards = [
@@ -100,16 +101,16 @@ return card.getView();
 /*                               Event Handlers                               */
 /* -------------------------------------------------------------------------- */
 
-const handleImageClick = (card) => {
-  const cardData = card.getCardData();
-  modalImage.src = cardData.link;
-  modalImage.alt = cardData.name;
-  imageModalDescription.textContent = cardData.name;  
+// const handleImageClick = (card) => {
+//   const cardData = card.getCardData();
+//   modalImage.src = cardData.link;
+//   modalImage.alt = cardData.name;
+//   imageModalDescription.textContent = cardData.name;  
 
-  //open the image modal
-  openModal(imageModalPopup);
+//   //open the image modal
+//   openModal(imageModalPo);pup
 
-}
+// }
 
 function renderCard(cardData) {
   const cardElement = createCard(cardData);
@@ -217,28 +218,40 @@ const editCardFormValidator = new FormValidator(config, profileEditForm);
 editCardFormValidator.enableValidation();
 
 //popupWithForm.js (Edit Form)
-const profileForm = new PopupWithForm('#profile-edit-modal', () => {
-});
 
 profileEditBtn.addEventListener("click", () => {
   profileNameInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   profileForm.open();
 });
-profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
-
-//popupWithForm.js (Add Form)
-
-const addCardForm = new PopupWithForm('#profile-add-modal', () => {
+const profileForm = new PopupWithForm('#profile-edit-modal', () => {
+  profileForm.close();
 });
+ profileForm.setEventListeners();
+ 
+//popupWithForm.js (Add Form)
 
 addNewCardBtn.addEventListener("click", () => {
   addCardFormValidator.enableValidation();
   addCardForm.open();
 });
 
-addNewCardForm.addEventListener("submit", handleAddCardSubmit);
+const addCardForm = new PopupWithForm('#profile-add-modal', () => {
+  //new card render card 
+  addCardForm.close();
+});
+addCardForm.setEventListeners();
+
+//popupWithImage.js 
+
+const popupImage = new PopupWithImage({ popupSelector: "#modal-image"});
+popupImage.setEventListeners();
+
+function handleImageClick(cardData) {
+  popupImage.open(cardData);
+}
+
 
 
 
