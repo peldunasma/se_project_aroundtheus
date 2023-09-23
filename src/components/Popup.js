@@ -15,10 +15,9 @@ export default class Popup {
        this._popupElement.classList.remove("modal_opened");
         document.removeEventListener("keydown", this._handleEscClose);
     }
-
+    //arrow function would allow the context of this to remain the same instead of .bind
     _handleEscClose = (evt) => {
         //listens for esc button
-        console.log(this);
         if (evt.key === "Escape") {
             this.close()
           }

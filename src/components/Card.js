@@ -3,6 +3,7 @@
 
 export default class Card {
   //constructor gets passed the following arguments: data, cardSelector, handleImageClick
+  //example of code with parameter deconstructoring
   constructor({ name, link }, cardSelector, handleImageClick) {
     //an object containing the card's text and a link to its image 
     this._name = name;
@@ -32,7 +33,7 @@ export default class Card {
       .querySelector(".card__image")
       .addEventListener("click", () => {
         //passing this as an argument ensures that all data is passed to the handler (including: name and link of card) 
-        this._handleImageClick(this);
+        this._handleImageClick(this.getCardData());
       });
   }
 
@@ -66,7 +67,7 @@ export default class Card {
     this._cardElement.querySelector(".card__image").src = this._link;
     this._cardElement.querySelector(".card__image").alt = this._name;
     this._cardElement.querySelector(".card__description").textContent =
-      this._name;
+    this._name;
     //return the card
     return this._cardElement;
   }

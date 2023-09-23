@@ -4,7 +4,7 @@ export default class PopupWithImage extends Popup {
     constructor({popupSelector}){
         super({ popupSelector });
         this._cardImage = this._popupElement.querySelector('.modal__image');
-        this._cardDescription = this._popupElement.querySelector('.card__description')
+        this._cardDescription = this._popupElement.querySelector('.modal__image-description')
     }
 // a function with a single destructured parameter
     open({name, link}){
