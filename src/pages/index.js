@@ -6,7 +6,6 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 
-
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -78,8 +77,8 @@ const modalImage = imageModalPopup.querySelector(".modal__image");
 /* -------------------------------------------------------------------------- */
 
 function createCard(cardData) {
-const card = new Card(cardData, "#card-template", handleImageClick);
-return card.getView();
+  const card = new Card(cardData, "#card-template", handleImageClick);
+  return card.getView();
 }
 
 /* -------------------------------------------------------------------------- */
@@ -89,25 +88,7 @@ return card.getView();
 function renderCard(cardData) {
   const cardElement = createCard(cardData);
   // call the section's addItem method
-  cardListEl.prepend(cardElement);
-}
-
-function handleProfileEditSubmit(data) {
-  evt.preventDefault();
-  profileName.textContent = profileNameInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-  //added close 
-  profileForm.close();
-}
-
-function handleAddCardSubmit(data) {
-  // evt.preventDefault();
-  const name = cardTitleInput.value;
-  const link = cardUrlInput.value;
-  
-  addCardForm.close();
-  addNewCardForm.reset();
-  addCardFormValidator.toggleButtonState();
+  cardSection.addItem(cardElement);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -131,19 +112,19 @@ addCardFormValidator.enableValidation();
 const editCardFormValidator = new FormValidator(config, profileEditForm);
 editCardFormValidator.enableValidation();
 
-//Section.js 
+//Section.js
 
-const cardSection = new Section({
-  items: initialCards,
-  renderer: (cardData) => {
-  //invoke the createCard function
-  const cardElement = createCard(cardData);
-  cardSection.addItem(cardElement)
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: (cardData) => {
+      const cardElement = createCard(cardData);
+      cardSection.addItem(cardElement);
+    },
   },
-},
-".cards__list"
-);  
-cardSection.renderItems()
+  ".cards__list"
+);
+cardSection.renderItems();
 
 //popupWithForm.js (Edit Form)
 
@@ -154,40 +135,35 @@ profileEditBtn.addEventListener("click", () => {
   profileForm.open();
 });
 
-const profileForm = new PopupWithForm('#profile-edit-modal', (data) => {
+const profileForm = new PopupWithForm("#profile-edit-modal", (data) => {
   userData.setUserInfo(data.name, data.description);
   profileForm.close();
 });
- profileForm.setEventListeners();
- 
+profileForm.setEventListeners();
+
 //popupWithForm.js (Add Form)
 
 addNewCardBtn.addEventListener("click", () => {
-  addCardFormValidator.enableValidation();
+  addCardFormValidator.toggleButtonState();
   addCardForm.open();
 });
 
-const addCardForm = new PopupWithForm('#profile-add-modal', (cardData) => {
-  //new card render card 
-  debugger;
+const addCardForm = new PopupWithForm("#profile-add-modal", (cardData) => {
+  //new card render card
   renderCard(cardData);
   addCardForm.close();
 });
 addCardForm.setEventListeners();
 
-//popupWithImage.js 
+//popupWithImage.js
 
-const popupImage = new PopupWithImage({ popupSelector: "#modal-image"});
+const popupImage = new PopupWithImage({ popupSelector: "#modal-image" });
 popupImage.setEventListeners();
 
 function handleImageClick(cardData) {
   popupImage.open(cardData);
 }
 
-//UserInfo.js 
+//UserInfo.js
 
-const userData = new UserInfo(
-  ".profile__name",
-  ".profile__description",
-);
-
+const userData = new UserInfo(".profile__name", ".profile__description");
