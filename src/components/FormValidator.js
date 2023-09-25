@@ -1,8 +1,8 @@
 //Purpose: sets settings for validating form fields
 
 export default class FormValidator {
-  //constructor gets passed the following arguments: 
-  //settings object that stores selectors and form classes, 
+  //constructor gets passed the following arguments:
+  //settings object that stores selectors and form classes,
   //and the second one takes a form element to be validated.
 
   constructor(options, formEl) {
@@ -28,7 +28,7 @@ export default class FormValidator {
     errorMessageEl.classList.remove(this._errorClass);
   }
 
-  //checks the validity 
+  // checks the validity
   _checkInputValidity(inputEl) {
     if (!inputEl.validity.valid) {
       this._showInputError(inputEl);
@@ -36,6 +36,8 @@ export default class FormValidator {
       this._hideInputError(inputEl);
     }
   }
+
+  _checkFormValidity  = () => this._inputEls.every(input => input.validity.valid);
 
   _disableButton() {
     this._submitButton.classList.add(this._inactiveButtonClass);
@@ -48,20 +50,15 @@ export default class FormValidator {
   }
 
   toggleButtonState() {
-    let foundInvalid = false;
+    const isFormValid = this._checkFormValidity(); // note, that it checks if form is valid 
 
-    this._inputEls.forEach((inputEl) => {
-      if (!inputEl.validity.valid) {
-        foundInvalid = true;
-      }
-    });
-
-    if (foundInvalid) {
-      this._disableButton();
-    } else {
+    if (isFormValid) {
       this._enableButton();
+    } else {
+      this._disableButton();
     }
   }
+
   _setEventListeners() {
     this._inputEls = Array.from(
       this._formEl.querySelectorAll(this._inputSelector)
@@ -85,4 +82,3 @@ export default class FormValidator {
     this._setEventListeners();
   }
 }
-
