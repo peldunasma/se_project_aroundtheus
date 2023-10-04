@@ -5,6 +5,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
+import API from "../components/Api.js";
 
 const initialCards = [
   {
@@ -91,9 +92,7 @@ function renderCard(cardData) {
   cardSection.addItem(cardElement);
 }
 
-/* -------------------------------------------------------------------------- */
-/*                               Event Listeners                              */
-/* -------------------------------------------------------------------------- */
+
 
 //* FormValidator.js logic
 
@@ -167,3 +166,10 @@ function handleImageClick(cardData) {
 //UserInfo.js
 
 const userData = new UserInfo(".profile__name", ".profile__description");
+
+//API.js
+
+const api = new API({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  authToken: "f01bb77e-1c08-4def-8c31-263c2557aed9",
+});
