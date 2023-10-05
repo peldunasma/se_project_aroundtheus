@@ -1,10 +1,10 @@
 export default class Api {
     constructor({baseUrl, headers}) {
-        this.baseUrl = baseUrl; 
+        this._baseUrl = baseUrl; 
         this.headers = headers; 
     }
 
-    getUserInfo(name) {
+    getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
           headers: {
             authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9"
@@ -15,10 +15,9 @@ export default class Api {
             if (res.status) {
               return res.json();
             }
-          })
-          .catch((err) => {
-            console.error(err); // log the error to the console
-          });
+             // if the server returns an error, reject the promise
+            return Promise.reject(`Error: ${res.status}`);
+          })   
       }
     
     getInitialCards() {
@@ -32,13 +31,11 @@ export default class Api {
             if (res.status) {
               return res.json();
             }
+            return Promise.reject(`Error: ${res.status}`);
           })
-          .catch((err) => {
-            console.error(err); // log the error to the console
-          });
       }
 
-      updateProfile(inputValues) {
+      editProfile(data) {
         return fetch(`${this._baseUrl}/users/me`, {
           method: "PATCH",
           headers: {
@@ -47,19 +44,18 @@ export default class Api {
           }, 
           //convert object to string
           body: JSON.stringify({
-            name: inputValues.name, 
-            about: inputValues.description
-          }), 
+            name: data.name,  
+            about: data.description,
+          }),
         })
           .then(res => {
             //process the result
             if (res.status) {
               return res.json();
             }
+            return Promise.reject(`Error: ${res.status}`);
           })
-          .catch((err) => {
-            console.error(err); // log the error to the console
-          });
+          
       }
 
       updateAvatar(avatar) {

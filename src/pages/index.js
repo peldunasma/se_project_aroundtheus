@@ -173,3 +173,9 @@ const api = new API({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   authToken: "f01bb77e-1c08-4def-8c31-263c2557aed9",
 });
+api.editProfile().then((data)=> {
+  console.log(data)
+})
+.catch((err) => {
+  console.error(err); // log the error to the console
+});
