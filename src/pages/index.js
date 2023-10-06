@@ -38,6 +38,11 @@ const initialCards = [
 /*                                  Elements                                  */
 /* -------------------------------------------------------------------------- */
 
+const api = new API({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  authToken: "f01bb77e-1c08-4def-8c31-263c2557aed9",
+});
+
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
@@ -92,8 +97,6 @@ function renderCard(cardData) {
   cardSection.addItem(cardElement);
 }
 
-
-
 //* FormValidator.js logic
 
 const config = {
@@ -113,19 +116,36 @@ editCardFormValidator.enableValidation();
 
 //Section.js
 
-const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: (cardData) => {
-      const cardElement = createCard(cardData);
-      cardSection.addItem(cardElement);
-    },
-  },
-  ".cards__list"
-);
-cardSection.renderItems();
+// const cardSection = new Section(
+//   {
+//     items: initialCards,
+//     renderer: (cardData) => {
+//       const cardElement = createCard(cardData);
+//       cardSection.addItem(cardElement);
+//     },
+//   },
+//   ".cards__list"
+// );
+// cardSection.renderItems();
 
-//popupWithForm.js (Edit Form)
+let cardSection;
+Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
+  ([userData, initialCards]) => {
+     cardSection = new Section(
+      {
+        items: initialCards,
+        renderer: (cardData) => {
+          const cardElement = createCard(cardData);
+          cardSection.addItem(cardElement);
+        },
+      },
+      ".cards__list"
+    );
+    cardSection.renderItems();
+  }
+);
+  
+//popupWithForm: Edit Profile 
 
 profileEditBtn.addEventListener("click", () => {
   const info = userData.getUserInfo();
@@ -135,8 +155,13 @@ profileEditBtn.addEventListener("click", () => {
 });
 
 const profileForm = new PopupWithForm("#profile-edit-modal", (data) => {
-  userData.setUserInfo(data.name, data.description);
-  profileForm.close();
+  api.editProfile(data).then((data)=> {
+    userData.setUserInfo(data.name, data.about);
+    profileForm.close();
+  })
+  .catch((err) => {
+    console.error(err); // log the error to the console
+  });
 });
 profileForm.setEventListeners();
 
@@ -147,10 +172,14 @@ addNewCardBtn.addEventListener("click", () => {
   addCardForm.open();
 });
 
-const addCardForm = new PopupWithForm("#profile-add-modal", (cardData) => {
-  //new card render card
-  renderCard(cardData);
-  addCardForm.close();
+const addCardForm = new PopupWithForm("#profile-add-modal", (inputValues) => {
+  api.createNewCard(inputValues).then((data)=> {
+    renderCard(data);
+    addCardForm.close();
+})
+.catch((err) => {
+    console.error(err); // log the error to the console
+  });
 });
 addCardForm.setEventListeners();
 
@@ -169,13 +198,13 @@ const userData = new UserInfo(".profile__name", ".profile__description");
 
 //API.js
 
-const api = new API({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  authToken: "f01bb77e-1c08-4def-8c31-263c2557aed9",
-});
-api.editProfile().then((data)=> {
-  console.log(data)
-})
-.catch((err) => {
-  console.error(err); // log the error to the console
-});
+// const api = new API({
+//   baseUrl: "https://around-api.en.tripleten-services.com/v1",
+//   authToken: "f01bb77e-1c08-4def-8c31-263c2557aed9",
+// });
+//  api.createNewCard({name: "John ", link: "https://media.istockphoto.com/id/470604022/photo/apple-tree-without-flowers-or-fruit-isolated-on-white.jpg?s=612x612&w=0&k=20&c=hIQ0YlXwNsaRW4empl_lK2roR2tKX7Rq7pjFqPJR3QA="}).then((data)=> {
+//   console.log(data)
+// })
+// .catch((err) => {
+//   console.error(err); // log the error to the console
+// });

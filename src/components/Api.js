@@ -4,20 +4,18 @@ export default class Api {
         this.headers = headers; 
     }
 
+    _checkServerResponse(res) {
+        if (res.ok) {
+          return res.json();
+        } else Promise.reject(res.status);
+      }
+
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
           headers: {
             authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9"
           }
-        })
-          .then(res => {
-            //process the result
-            if (res.status) {
-              return res.json();
-            }
-             // if the server returns an error, reject the promise
-            return Promise.reject(`Error: ${res.status}`);
-          })   
+        }).then(this._checkServerResponse);  
       }
     
     getInitialCards() {
@@ -25,14 +23,7 @@ export default class Api {
           headers: {
             authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9"
           }
-        })
-          .then(res => {
-            //process the result
-            if (res.status) {
-              return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
-          })
+        }).then(this._checkServerResponse);
       }
 
       editProfile(data) {
@@ -47,37 +38,29 @@ export default class Api {
             name: data.name,  
             about: data.description,
           }),
-        })
-          .then(res => {
-            //process the result
-            if (res.status) {
-              return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
-          })
-          
+        }).then(this._checkServerResponse);    
       }
 
-      updateAvatar(avatar) {
-        return fetch(`${this._baseUrl}/users/me/avatar`, {
-          method: "PATCH",
-          headers: {
-            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",   
-          }, 
-          body: JSON.stringify(avatar), 
-        }) //callback function
-          .then(res => {
-            //process the result
-            if (res.status) {
-              return res.json();
-            }
-          })
-          .catch((err) => {
-            console.error(err); // log the error to the console
-          });
-      }
+    //   updateAvatar(avatar) {
+    //     return fetch(`${this._baseUrl}/users/me/avatar`, {
+    //       method: "PATCH",
+    //       headers: {
+    //         authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",   
+    //       }, 
+    //       body: JSON.stringify(avatar), 
+    //     }) //callback function
+    //       .then(res => {
+    //         //process the result
+    //         if (res.status) {
+    //           return res.json();
+    //         }
+    //       })
+    //       .catch((err) => {
+    //         console.error(err); // log the error to the console
+    //       });
+    //   }
 
-      createCard(initialCards) {
+      createNewCard(initialCards) {
         return fetch(`${this._baseUrl}/cards`, {
           method: "POST",
           headers: {
@@ -88,73 +71,65 @@ export default class Api {
             name: initialCards.name, 
             link: initialCards.link
           }), 
-        })
-          .then(res => {
-            //process the result
-            if (res.status) {
-              return res.json();
-            }
-          })
-          .catch((err) => {
-            console.error(err); // log the error to the console
-          });
+        }).then(this._checkServerResponse);
+          
       }
 
-      deleteCard(id) {
-        return fetch(`${this._baseUrl}/cards/${id}`, {
-          method: "DELETE",
-          headers: {
-            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
-            "Content-Type": "application/json"
-          }
-        })
-          .then(res => {
-            //process the result
-            if (res.status) {
-              return res.json();
-            }
-          })
-          .catch((err) => {
-            console.error(err); // log the error to the console
-          });
-      }
+    //   deleteCard(id) {
+    //     return fetch(`${this._baseUrl}/cards/${id}`, {
+    //       method: "DELETE",
+    //       headers: {
+    //         authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
+    //         "Content-Type": "application/json"
+    //       }
+    //     })
+    //       .then(res => {
+    //         //process the result
+    //         if (res.status) {
+    //           return res.json();
+    //         }
+    //       })
+    //       .catch((err) => {
+    //         console.error(err); // log the error to the console
+    //       });
+    //   }
 
-      likeCard(id) {
-        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-          method: "PUT",
-          headers: {
-            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
-            "Content-Type": "application/json"
-          }
-        })
-          .then(res => {
-            //process the result
-            if (res.status) {
-              return res.json();
-            }
-          })
-          .catch((err) => {
-            console.error(err); // log the error to the console
-          });
-      }
+    //   likeCard(id) {
+    //     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+    //       method: "PUT",
+    //       headers: {
+    //         authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
+    //         "Content-Type": "application/json"
+    //       }
+    //     })
+    //       .then(res => {
+    //         //process the result
+    //         if (res.status) {
+    //           return res.json();
+    //         }
+    //       })
+    //       .catch((err) => {
+    //         console.error(err); // log the error to the console
+    //       });
+    //   }
 
-      dislikeCard(id) {
-        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-          method: "DELETE",
-          headers: {
-            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
-            "Content-Type": "application/json"
-          }
-        })
-          .then(res => {
-            //process the result
-            if (res.status) {
-              return res.json();
-            }
-          })
-          .catch((err) => {
-            console.error(err); // log the error to the console
-          });
-      }
+    //   dislikeCard(id) {
+    //     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+    //       method: "DELETE",
+    //       headers: {
+    //         authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
+    //         "Content-Type": "application/json"
+    //       }
+    //     })
+    //       .then(res => {
+    //         //process the result
+    //         if (res.status) {
+    //           return res.json();
+    //         }
+    //       })
+    //       .catch((err) => {
+    //         console.error(err); // log the error to the console
+    //       });
+    //   }
       
 }
