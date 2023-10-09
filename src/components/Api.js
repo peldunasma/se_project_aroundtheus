@@ -41,24 +41,16 @@ export default class Api {
         }).then(this._checkServerResponse);    
       }
 
-    //   updateAvatar(avatar) {
-    //     return fetch(`${this._baseUrl}/users/me/avatar`, {
-    //       method: "PATCH",
-    //       headers: {
-    //         authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",   
-    //       }, 
-    //       body: JSON.stringify(avatar), 
-    //     }) //callback function
-    //       .then(res => {
-    //         //process the result
-    //         if (res.status) {
-    //           return res.json();
-    //         }
-    //       })
-    //       .catch((err) => {
-    //         console.error(err); // log the error to the console
-    //       });
-    //   }
+      updateAvatar(data) {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
+          method: "PATCH",
+          headers: {
+            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",   
+          }, 
+            body: JSON.stringify({avatar: data.link
+            }), 
+        }) .then(this._handleServerResponse);
+      }
 
       createNewCard(initialCards) {
         return fetch(`${this._baseUrl}/cards`, {

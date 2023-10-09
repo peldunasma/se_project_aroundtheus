@@ -51,8 +51,10 @@ const cardTemplate =
 const cardListEl = document.querySelector(".cards__list");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileAddModal = document.querySelector("#profile-add-modal");
+const profileAvatarModal = document.querySelector("#profile-image-modal")
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addNewCardForm = profileAddModal.querySelector(".modal__form");
+const editAvatarElement = profileAvatarModal.querySelector(".modal__form"); 
 const imageModalPopup = document.querySelector("#modal-image");
 
 //Buttons and other DOM nodes
@@ -114,6 +116,9 @@ addCardFormValidator.enableValidation();
 const editCardFormValidator = new FormValidator(config, profileEditForm);
 editCardFormValidator.enableValidation();
 
+const editAvatarValidator = new FormValidator(config, editAvatarElement);
+editAvatarValidator.enableValidation();
+
 //Section.js
 
 // const cardSection = new Section(
@@ -144,7 +149,25 @@ Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
     cardSection.renderItems();
   }
 );
-  
+
+//popupWithForm: Edit
+ 
+const editAvatarForm = new PopupWithForm("#profile-image-modal", (avatar) => {
+  api.updateAvatar(avatar).then((avatar) => {
+      userData.getUserInfo(avatar.link);
+      editAvatarForm.close();
+    })
+    .catch((err) => {
+      console.error(err); // log the error to the console
+    });
+});
+editAvatarForm.setEventListeners();
+
+const avatarButton = document.querySelector(".avatar-edit-button");
+avatarButton.addEventListener("click", () => {
+  editAvatarForm.open();
+});
+
 //popupWithForm: Edit Profile 
 
 profileEditBtn.addEventListener("click", () => {
@@ -202,7 +225,7 @@ const userData = new UserInfo(".profile__name", ".profile__description");
 //   baseUrl: "https://around-api.en.tripleten-services.com/v1",
 //   authToken: "f01bb77e-1c08-4def-8c31-263c2557aed9",
 // });
-//  api.createNewCard({name: "John ", link: "https://media.istockphoto.com/id/470604022/photo/apple-tree-without-flowers-or-fruit-isolated-on-white.jpg?s=612x612&w=0&k=20&c=hIQ0YlXwNsaRW4empl_lK2roR2tKX7Rq7pjFqPJR3QA="}).then((data)=> {
+//  api.updateAvatar().then((data)=> {
 //   console.log(data)
 // })
 // .catch((err) => {

@@ -22,6 +22,7 @@ export default class FormValidator {
   }
 
   _hideInputError(inputEl) {
+    console.log(inputEl)
     const errorMessageEl = this._formEl.querySelector(`#${inputEl.id}-error`);
     inputEl.classList.remove(this._inputErrorClass);
     errorMessageEl.textContent = "";
