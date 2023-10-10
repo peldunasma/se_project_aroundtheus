@@ -4,14 +4,27 @@
 export default class Card {
   //constructor gets passed the following arguments: data, cardSelector, handleImageClick
   //example of code with parameter deconstructoring
-  constructor({ name, link }, cardSelector, handleImageClick) {
-    //an object containing the card's text and a link to its image 
+  constructor(
+    { name, link, _id }, 
+    cardSelector, 
+    handleImageClick,
+    handleDeleteClick,
+    handleLikeClick, 
+    isLiked
+    ) {
     this._name = name;
     this._link = link;
-    // a selector string for the corresponding <template> element
     this._cardSelector = cardSelector;
-    //a function that handles the opening of the preview picture modal.
     this._handleImageClick = handleImageClick;
+    this._id = _id;
+    this._isLiked = isLiked;
+    this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeClick = handleLikeClick;
+
+  }
+
+  getId(){
+    return this._id;
   }
 
   _setEventListeners() {
@@ -37,6 +50,19 @@ export default class Card {
       });
   }
 
+  _renderLikes() {
+    if (this._isLiked) {
+      this._likeButton.classList.add("card__like-button_active");
+    } else {
+      this._likeButton.classList.remove("card__like-button_active");
+    }
+  }
+
+  setLikes(isLiked) {
+    this._isLiked = isLiked;
+    this._renderLikes();
+  }
+
   getCardData() {
     return { name: this._name, link: this._link };
   }
@@ -53,6 +79,10 @@ export default class Card {
     this._cardElement = null;
   }
 
+  deleteCard(){
+    this._handleDeleteCard();
+  }
+
   //returns a fully functional card element populated with the appropriate data 
   getView() {
     //get card view
@@ -61,14 +91,20 @@ export default class Card {
       .content.querySelector(".card")
       .cloneNode(true);
 
-    //set event listeners
-    this._setEventListeners();
+    this._likeButton = this._cardElement.querySelector(".card__like-button");
 
+    this._renderLikes();
+    this._renderCard();
+    this._setEventListeners();
+    return this._cardElement;
+  }
+
+    _renderCard(){
     this._cardElement.querySelector(".card__image").src = this._link;
     this._cardElement.querySelector(".card__image").alt = this._name;
     this._cardElement.querySelector(".card__description").textContent =
     this._name;
     //return the card
     return this._cardElement;
+    }
   }
-}

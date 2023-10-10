@@ -45,11 +45,12 @@ export default class Api {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
           method: "PATCH",
           headers: {
-            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",   
+            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
+            "Content-Type": "application/json"   
           }, 
             body: JSON.stringify({avatar: data.link
             }), 
-        }) .then(this._handleServerResponse);
+        }) .then(this._checkServerResponse);
       }
 
       createNewCard(initialCards) {
@@ -86,42 +87,24 @@ export default class Api {
     //       });
     //   }
 
-    //   likeCard(id) {
-    //     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-    //       method: "PUT",
-    //       headers: {
-    //         authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
-    //         "Content-Type": "application/json"
-    //       }
-    //     })
-    //       .then(res => {
-    //         //process the result
-    //         if (res.status) {
-    //           return res.json();
-    //         }
-    //       })
-    //       .catch((err) => {
-    //         console.error(err); // log the error to the console
-    //       });
-    //   }
+      likeCard(_id) {
+        return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
+          method: "PUT",
+          headers: {
+            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
+            "Content-Type": "application/json"
+          }
+        }).then(this._checkServerResponse);  
+      }
 
-    //   dislikeCard(id) {
-    //     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-    //       method: "DELETE",
-    //       headers: {
-    //         authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
-    //         "Content-Type": "application/json"
-    //       }
-    //     })
-    //       .then(res => {
-    //         //process the result
-    //         if (res.status) {
-    //           return res.json();
-    //         }
-    //       })
-    //       .catch((err) => {
-    //         console.error(err); // log the error to the console
-    //       });
-    //   }
+      dislikeCard(_id) {
+        return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
+          method: "DELETE",
+          headers: {
+            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
+            "Content-Type": "application/json"
+          }
+        }).then(this._checkServerResponse);   
+      }
       
 }
