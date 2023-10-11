@@ -5,18 +5,18 @@ export default class Card {
   //constructor gets passed the following arguments: data, cardSelector, handleImageClick
   //example of code with parameter deconstructoring
   constructor(
-    { name, link, _id }, 
+    { name, link, _id, isLiked}, 
     cardSelector, 
     handleImageClick,
-    handleDeleteClick,
     handleLikeClick, 
-    isLiked
+    handleDeleteClick,
+    
     ) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
-    this._id = _id;
+    this.id = _id;
     this._isLiked = isLiked;
     this._handleDeleteClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;
@@ -58,6 +58,10 @@ export default class Card {
     }
   }
 
+  isLiked() {
+    return this._isLiked;
+  }
+
   setLikes(isLiked) {
     this._isLiked = isLiked;
     this._renderLikes();
@@ -71,6 +75,8 @@ export default class Card {
     this._cardElement
       .querySelector(".card__like-button")
       .classList.toggle("card__like-button_active");
+      console.log(this._cardElement);
+      this._handleLikeClick(this);
   }
 
   _handleDeleteIcon() {

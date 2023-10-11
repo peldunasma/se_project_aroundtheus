@@ -91,8 +91,12 @@ const modalImage = imageModalPopup.querySelector(".modal__image");
 /* -------------------------------------------------------------------------- */
 
 function createCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleImageClick);
-  return card.getView();
+  console.log(cardData);
+  const card = new Card(cardData,
+     "#card-template", 
+     handleImageClick,
+     handleLikeClick
+     );return card.getView();
 }
 
 function renderCard(cardData) {
@@ -223,10 +227,10 @@ function handleImageClick(cardData) {
 /*                                 Card Likes                                 */
 /* -------------------------------------------------------------------------- */
 
-function handleLikeClick(_id, _isLiked) {
-  if (card._isLiked()) {
+function handleLikeClick(card) {
+  if (card.isLiked()) {
     api
-      .dislikeCard(card._id)
+      .dislikeCard(card.id)
       .then(() => {
         card.setLikes(false);
       })
