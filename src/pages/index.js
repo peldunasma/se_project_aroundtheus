@@ -44,10 +44,10 @@ const api = new API({
 });
 
 const userData = new UserInfo(
-".profile__name", 
-".profile__description",
- ".profile__image"
- );
+  ".profile__name",
+  ".profile__description",
+  ".profile__image"
+);
 
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
@@ -57,10 +57,10 @@ const cardTemplate =
 const cardListEl = document.querySelector(".cards__list");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileAddModal = document.querySelector("#profile-add-modal");
-const profileAvatarModal = document.querySelector("#profile-image-modal")
+const profileAvatarModal = document.querySelector("#profile-image-modal");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addNewCardForm = profileAddModal.querySelector(".modal__form");
-const editAvatarElement = profileAvatarModal.querySelector(".modal__form"); 
+const editAvatarElement = profileAvatarModal.querySelector(".modal__form");
 const imageModalPopup = document.querySelector("#modal-image");
 
 //Buttons and other DOM nodes
@@ -91,12 +91,13 @@ const modalImage = imageModalPopup.querySelector(".modal__image");
 /* -------------------------------------------------------------------------- */
 
 function createCard(cardData) {
-  console.log(cardData);
-  const card = new Card(cardData,
-     "#card-template", 
-     handleImageClick,
-     handleLikeClick
-     );return card.getView();
+  const card = new Card(
+    cardData,
+    "#card-template",
+    handleImageClick,
+    handleLikeClick
+  );
+  return card.getView();
 }
 
 function renderCard(cardData) {
@@ -134,9 +135,9 @@ editAvatarValidator.enableValidation();
 let cardSection;
 Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
   ([data, initialCards]) => {
-     userData.setUserInfo(data.name, data.about);
-     userData.setUserAvatar(data.avatar);
-     cardSection = new Section(
+    userData.setUserInfo(data.name, data.about);
+    userData.setUserAvatar(data.avatar);
+    cardSection = new Section(
       {
         items: initialCards,
         renderer: (cardData) => {
@@ -153,14 +154,16 @@ Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
 /* -------------------------------------------------------------------------- */
 /*                           Update Avatar Image                              */
 /* -------------------------------------------------------------------------- */
- 
+
 const editAvatarForm = new PopupWithForm("#profile-image-modal", (avatar) => {
-  api.updateAvatar(avatar).then((userInfo) => {
+  api
+    .updateAvatar(avatar)
+    .then((userInfo) => {
       userData.setUserAvatar(userInfo.avatar);
       editAvatarForm.close();
     })
     .catch((err) => {
-      console.error(err); 
+      console.error(err);
     });
 });
 editAvatarForm.setEventListeners();
@@ -182,13 +185,15 @@ profileEditBtn.addEventListener("click", () => {
 });
 
 const profileForm = new PopupWithForm("#profile-edit-modal", (data) => {
-  api.editProfile(data).then((data)=> {
-    userData.setUserInfo(data.name, data.about);
-    profileForm.close();
-  })
-  .catch((err) => {
-    console.error(err); 
-  });
+  api
+    .editProfile(data)
+    .then((data) => {
+      userData.setUserInfo(data.name, data.about);
+      profileForm.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 });
 profileForm.setEventListeners();
 
@@ -202,13 +207,15 @@ addNewCardBtn.addEventListener("click", () => {
 });
 
 const addCardForm = new PopupWithForm("#profile-add-modal", (inputValues) => {
-  api.createNewCard(inputValues).then((data)=> {
-    renderCard(data);
-    addCardForm.close();
-})
-.catch((err) => {
-    console.error(err); // log the error to the console
-  });
+  api
+    .createNewCard(inputValues)
+    .then((data) => {
+      renderCard(data);
+      addCardForm.close();
+    })
+    .catch((err) => {
+      console.error(err); // log the error to the console
+    });
 });
 addCardForm.setEventListeners();
 
@@ -245,29 +252,23 @@ function handleLikeClick(card) {
   }
 }
 
-//API.js
+/* -------------------------------------------------------------------------- */
+/*                          Delete Confirmation Form                          */
+/* -------------------------------------------------------------------------- */
+const deleteConfirmForm = new PopupWithForm("#delete-card-modal", () => {
+  api
+    .deleteCard(response)
+    .then((userRes) => {
+      userData.setUserConfirm(userRes.response);
+      deleteConfirmForm.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+deleteConfirmForm.setEventListeners();
 
-// const api = new API({
-//   baseUrl: "https://around-api.en.tripleten-services.com/v1",
-//   authToken: "f01bb77e-1c08-4def-8c31-263c2557aed9",
-// });
-//  api.likeCard(data._id).then((data)=> {
-//   console.log(data)
-// })
-// .catch((err) => {
-//   console.error(err); // log the error to the console
-// });
-
-//Section.js
-
-// const cardSection = new Section(
-//   {
-//     items: initialCards,
-//     renderer: (cardData) => {
-//       const cardElement = createCard(cardData);
-//       cardSection.addItem(cardElement);
-//     },
-//   },
-//   ".cards__list"
-// );
-// cardSection.renderItems();
+const deleteButton = document.querySelector(".card__delete-button");
+deleteButton.addEventListener("click", () => {
+  deleteConfirmForm.open();
+});

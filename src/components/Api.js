@@ -68,24 +68,24 @@ export default class Api {
           
       }
 
-    //   deleteCard(id) {
-    //     return fetch(`${this._baseUrl}/cards/${id}`, {
-    //       method: "DELETE",
-    //       headers: {
-    //         authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
-    //         "Content-Type": "application/json"
-    //       }
-    //     })
-    //       .then(res => {
-    //         //process the result
-    //         if (res.status) {
-    //           return res.json();
-    //         }
-    //       })
-    //       .catch((err) => {
-    //         console.error(err); // log the error to the console
-    //       });
-    //   }
+      deleteCard(id) {
+        return fetch(`${this._baseUrl}/cards/${id}`, {
+          method: "DELETE",
+          headers: {
+            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
+            "Content-Type": "application/json"
+          }
+        })
+          .then(res => {
+            //process the result
+            if (res.status) {
+              return res.json();
+            }
+          })
+          .catch((err) => {
+            console.error(err); // log the error to the console
+          });
+      }
 
       likeCard(_id) {
         return fetch(`${this._baseUrl}/cards/${_id}/likes`, {

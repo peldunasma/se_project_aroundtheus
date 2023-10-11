@@ -129,6 +129,10 @@
     position: relative; 
 }
 
+.modal__container_confirm {
+    max-height: 181px;
+  }
+
 .modal__image-description{
     height: 12px;
     font-size: 12px;
