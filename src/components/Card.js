@@ -24,7 +24,7 @@ export default class Card {
   }
 
   getId(){
-    return this._id;
+    return this.id;
   }
 
   _setEventListeners() {
@@ -39,7 +39,7 @@ export default class Card {
     this._cardElement
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
-        this._handleDeleteIcon();
+        this._handleDeleteClick(this);
       });
 
     this._cardElement
@@ -85,7 +85,7 @@ export default class Card {
   }
 
   deleteCard(){
-    this._handleDeleteCard();
+    this._cardElement.remove();
   }
 
   //returns a fully functional card element populated with the appropriate data 

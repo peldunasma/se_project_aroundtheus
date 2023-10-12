@@ -6,6 +6,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import API from "../components/Api.js";
+import PopupWithFormSubmit from "../components/PopupWithFormSubmit.js";
 
 const initialCards = [
   {
@@ -95,7 +96,8 @@ function createCard(cardData) {
     cardData,
     "#card-template",
     handleImageClick,
-    handleLikeClick
+    handleLikeClick,
+    handleDeleteClick
   );
   return card.getView();
 }
@@ -255,20 +257,24 @@ function handleLikeClick(card) {
 /* -------------------------------------------------------------------------- */
 /*                          Delete Confirmation Form                          */
 /* -------------------------------------------------------------------------- */
-const deleteConfirmForm = new PopupWithForm("#delete-card-modal", () => {
-  api
-    .deleteCard(response)
-    .then((userRes) => {
-      userData.setUserConfirm(userRes.response);
-      deleteConfirmForm.close();
+
+const deleteConfirmation = new PopupWithFormSubmit({popupSelector: "#delete-card-modal"})
+deleteConfirmation.setEventListeners();
+
+// pass this to card class
+function handleDeleteClick(card) {
+  deleteConfirmation.open();
+  deleteConfirmation.setSubmitAction(() => {
+    // handle card deletion
+    api
+    .deleteCard(card.id)
+    .then(() => {
+      deleteConfirmation.close();
+      card.deleteCard();
     })
     .catch((err) => {
       console.error(err);
-    });
-});
-deleteConfirmForm.setEventListeners();
-
-const deleteButton = document.querySelector(".card__delete-button");
-deleteButton.addEventListener("click", () => {
-  deleteConfirmForm.open();
-});
+    })
+    .finally(() => deleteConfirmation.setSubmitAction(false));
+  })
+}

@@ -2,12 +2,11 @@
 
 export default class UserInfo {
     //created two parameters 
-    constructor(nameSelector, jobSelector, avatarSelector, confirmSelector) {
+    constructor(nameSelector, jobSelector, avatarSelector) {
         //Assigned variable name
         this._nameSelector = document.querySelector(nameSelector);
         this._jobSelector = document.querySelector(jobSelector);
         this._avatarSelector = document.querySelector(avatarSelector);
-        this._confirmSelector = document.querySelector(confirmSelector)
     }
 
     getUserInfo() {
@@ -24,11 +23,5 @@ export default class UserInfo {
 
     setUserAvatar(avatar) {
         this._avatarSelector.src = avatar;
-    }
-
-    setUserConfirm(response) {
-        
-        this._confirmSelector.textContent = response;
-        
     }
 }
