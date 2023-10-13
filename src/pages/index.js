@@ -83,9 +83,7 @@ const profileNameInput = profileEditForm.querySelector("#profile-name-input");
 const profileDescriptionInput = profileEditForm.querySelector(
   "#profile-description-input"
 );
-const cardTitleInput = addNewCardForm.querySelector(".modal__input_type_title");
-const cardUrlInput = addNewCardForm.querySelector(".modal__input_type_url");
-const modalImage = imageModalPopup.querySelector(".modal__image");
+
 
 /* -------------------------------------------------------------------------- */
 /*                              Render Cards                                  */
@@ -141,7 +139,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
     userData.setUserAvatar(data.avatar);
     cardSection = new Section(
       {
-        items: initialCards,
+        items: initialCards.reverse(),
         renderer: (cardData) => {
           const cardElement = createCard(cardData);
           cardSection.addItem(cardElement);
@@ -158,15 +156,20 @@ Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
 /* -------------------------------------------------------------------------- */
 
 const editAvatarForm = new PopupWithForm("#profile-image-modal", (avatar) => {
+  editAvatarForm.setActionText(true);
+  // document.querySelector('#modal-avatar-submit').textContent = "Saving...";
   api
     .updateAvatar(avatar)
     .then((userInfo) => {
       userData.setUserAvatar(userInfo.avatar);
+      // editAvatarForm.setActionText(false);
+      document.querySelector('#modal-avatar-submit').textContent = "Save";
       editAvatarForm.close();
     })
     .catch((err) => {
       console.error(err);
-    });
+    })
+    .finally(() => profileForm.setActionText(false));
 });
 editAvatarForm.setEventListeners();
 
@@ -187,6 +190,7 @@ profileEditBtn.addEventListener("click", () => {
 });
 
 const profileForm = new PopupWithForm("#profile-edit-modal", (data) => {
+  profileForm.setActionText(true);
   api
     .editProfile(data)
     .then((data) => {
@@ -195,7 +199,8 @@ const profileForm = new PopupWithForm("#profile-edit-modal", (data) => {
     })
     .catch((err) => {
       console.error(err);
-    });
+    })
+    .finally(() => profileForm.setActionText(false));
 });
 profileForm.setEventListeners();
 
@@ -209,6 +214,7 @@ addNewCardBtn.addEventListener("click", () => {
 });
 
 const addCardForm = new PopupWithForm("#profile-add-modal", (inputValues) => {
+  addCardForm.setActionText(true);
   api
     .createNewCard(inputValues)
     .then((data) => {
@@ -217,7 +223,8 @@ const addCardForm = new PopupWithForm("#profile-add-modal", (inputValues) => {
     })
     .catch((err) => {
       console.error(err); // log the error to the console
-    });
+    })
+    .finally(() => addCardForm.setActionText(false));
 });
 addCardForm.setEventListeners();
 
@@ -241,14 +248,14 @@ function handleLikeClick(card) {
     api
       .dislikeCard(card.id)
       .then(() => {
-        card.setLikes(false);
+        card.setCardLikes(false);
       })
       .catch((err) => console.log(err));
   } else {
     api
       .likeCard(card.id)
       .then(() => {
-        card.setLikes(true);
+        card.setCardLikes(true);
       })
       .catch((err) => console.log(err));
   }
@@ -258,23 +265,25 @@ function handleLikeClick(card) {
 /*                          Delete Confirmation Form                          */
 /* -------------------------------------------------------------------------- */
 
-const deleteConfirmation = new PopupWithFormSubmit({popupSelector: "#delete-card-modal"})
-deleteConfirmation.setEventListeners();
+const deleteConfirmationModal = new PopupWithFormSubmit("#delete-card-modal");
+deleteConfirmationModal.setEventListeners();
 
 // pass this to card class
 function handleDeleteClick(card) {
-  deleteConfirmation.open();
-  deleteConfirmation.setSubmitAction(() => {
+  deleteConfirmationModal.open();
+  //asks user if they want to delete 
+  deleteConfirmationModal.setSubmitAction(() => {
     // handle card deletion
+    deleteConfirmationModal.setActionText(true, "Deleting...");
     api
     .deleteCard(card.id)
     .then(() => {
-      deleteConfirmation.close();
+      deleteConfirmationModal.close();
       card.deleteCard();
     })
     .catch((err) => {
       console.error(err);
     })
-    .finally(() => deleteConfirmation.setSubmitAction(false));
+    .finally(() => deleteConfirmationModal.setActionText(false));
   })
 }

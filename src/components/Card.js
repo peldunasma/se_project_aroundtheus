@@ -23,10 +23,6 @@ export default class Card {
 
   }
 
-  getId(){
-    return this.id;
-  }
-
   _setEventListeners() {
     //".card__like-button"
     this._cardElement
@@ -50,7 +46,7 @@ export default class Card {
       });
   }
 
-  _renderLikes() {
+  _renderCardLikes() {
     if (this._isLiked) {
       this._likeButton.classList.add("card__like-button_active");
     } else {
@@ -62,9 +58,9 @@ export default class Card {
     return this._isLiked;
   }
 
-  setLikes(isLiked) {
+  setCardLikes(isLiked) {
     this._isLiked = isLiked;
-    this._renderLikes();
+    this._renderCardLikes();
   }
 
   getCardData() {
@@ -86,6 +82,7 @@ export default class Card {
 
   deleteCard(){
     this._cardElement.remove();
+    this._cardElement = null;
   }
 
   //returns a fully functional card element populated with the appropriate data 
@@ -98,7 +95,7 @@ export default class Card {
 
     this._likeButton = this._cardElement.querySelector(".card__like-button");
 
-    this._renderLikes();
+    this._renderCardLikes();
     this._renderCard();
     this._setEventListeners();
     return this._cardElement;

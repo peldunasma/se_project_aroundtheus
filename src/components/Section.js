@@ -12,8 +12,6 @@ export default class Section{
     }
 
     addItem(element) {
-        // prepend adds html to beggining to the container 
-        //after renders cards it prepends it to the beginning of the page
         this._container.prepend(element); 
     }
 }

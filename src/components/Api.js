@@ -75,16 +75,7 @@ export default class Api {
             authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
             "Content-Type": "application/json"
           }
-        })
-          .then(res => {
-            //process the result
-            if (res.status) {
-              return res.json();
-            }
-          })
-          .catch((err) => {
-            console.error(err); // log the error to the console
-          });
+        }).then(this._checkServerResponse);
       }
 
       likeCard(_id) {
