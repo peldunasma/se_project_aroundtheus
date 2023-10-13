@@ -8,32 +8,6 @@ import UserInfo from "../components/UserInfo.js";
 import API from "../components/Api.js";
 import PopupWithFormSubmit from "../components/PopupWithFormSubmit.js";
 
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
 
 /* -------------------------------------------------------------------------- */
 /*                                Constants                                   */
@@ -55,29 +29,19 @@ const cardTemplate =
 
 // Wrappers
 
-const cardListEl = document.querySelector(".cards__list");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileAddModal = document.querySelector("#profile-add-modal");
 const profileAvatarModal = document.querySelector("#profile-image-modal");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addNewCardForm = profileAddModal.querySelector(".modal__form");
 const editAvatarElement = profileAvatarModal.querySelector(".modal__form");
-const imageModalPopup = document.querySelector("#modal-image");
 
-//Buttons and other DOM nodes
+//Buttons 
 
-const profileModalCloseBtn = profileEditModal.querySelector(".modal__close");
-const addCardModalCloseBtn = profileAddModal.querySelector(".modal__close");
-const imageModalCloseBtn = imageModalPopup.querySelector(".modal__close");
 const profileEditBtn = document.querySelector("#profile-edit-button");
-const profileName = document.querySelector(".profile__name");
-const profileDescription = document.querySelector(".profile__description");
 const addNewCardBtn = document.querySelector("#profile-add-button");
-const imageModalDescription = document.querySelector(
-  ".modal__image-description"
-);
 
-//Form data
+//Inputs
 
 const profileNameInput = profileEditForm.querySelector("#profile-name-input");
 const profileDescriptionInput = profileEditForm.querySelector(
@@ -274,6 +238,7 @@ function handleDeleteClick(card) {
   //asks user if they want to delete 
   deleteConfirmationModal.setSubmitAction(() => {
     // handle card deletion
+    debugger;
     deleteConfirmationModal.setActionText(true, "Deleting...");
     api
     .deleteCard(card.id)

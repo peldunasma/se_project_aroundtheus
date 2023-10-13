@@ -10,6 +10,7 @@ export default class PopupWithFormSubmit extends Popup {
   }
 
   setActionText(submit, actionText = "Saving...") {
+    debugger;
     if (submit) {
       this._actionButton.textContent = actionText;
     } else {
@@ -17,15 +18,7 @@ export default class PopupWithFormSubmit extends Popup {
     }
   }
 
-  setActionText(submit) {
-    if (submit) {
-      document.querySelector('#modal-avatar-submit').textContent = "Save";
-      // this._actionButton.textContent = "Save";
-    } else {
-      // this._actionButton.text = "Saving...";
-      document.querySelector('#modal-avatar-submit').textContent = "Saving...";
-    }
-  }
+
 
   setSubmitAction(action) {
     // takes function as argument
