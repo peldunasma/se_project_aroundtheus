@@ -5,13 +5,12 @@ export default class Card {
   //constructor gets passed the following arguments: data, cardSelector, handleImageClick
   //example of code with parameter deconstructoring
   constructor(
-    { name, link, _id, isLiked}, 
-    cardSelector, 
+    { name, link, _id, isLiked },
+    cardSelector,
     handleImageClick,
-    handleLikeClick, 
-    handleDeleteClick,
-    
-    ) {
+    handleLikeClick,
+    handleDeleteClick
+  ) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
@@ -20,7 +19,6 @@ export default class Card {
     this._isLiked = isLiked;
     this._handleDeleteClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;
-
   }
 
   _setEventListeners() {
@@ -28,7 +26,7 @@ export default class Card {
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
-        this._handleLikeIcon();
+        this._handleLikeClick(this);
       });
 
     //".card__delete-button"
@@ -41,7 +39,7 @@ export default class Card {
     this._cardElement
       .querySelector(".card__image")
       .addEventListener("click", () => {
-        //passing this as an argument ensures that all data is passed to the handler (including: name and link of card) 
+        //passing this as an argument ensures that all data is passed to the handler (including: name and link of card)
         this._handleImageClick(this.getCardData());
       });
   }
@@ -67,25 +65,12 @@ export default class Card {
     return { name: this._name, link: this._link };
   }
 
-  _handleLikeIcon() {
-    this._cardElement
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
-      this._handleLikeClick(this);
-  }
-
-  _handleDeleteIcon() {
-    this._cardElement.remove();
-    //removes card from the DOM
-    this._cardElement = null;
-  }
-
-  deleteCard(){
+  deleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
   }
 
-  //returns a fully functional card element populated with the appropriate data 
+  //returns a fully functional card element populated with the appropriate data
   getView() {
     //get card view
     this._cardElement = document
@@ -101,12 +86,12 @@ export default class Card {
     return this._cardElement;
   }
 
-    _renderCard(){
+  _renderCard() {
     this._cardElement.querySelector(".card__image").src = this._link;
     this._cardElement.querySelector(".card__image").alt = this._name;
     this._cardElement.querySelector(".card__description").textContent =
-    this._name;
+      this._name;
     //return the card
     return this._cardElement;
-    }
   }
+}

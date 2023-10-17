@@ -9,16 +9,13 @@ export default class PopupWithFormSubmit extends Popup {
     this._actionButtonText = this._actionButton.textContent;
   }
 
-  setActionText(submit, actionText = "Saving...") {
-    debugger;
+  setActionText(submit, actionText = "Deleting...") {
     if (submit) {
       this._actionButton.textContent = actionText;
     } else {
       this._actionButton.textContent = this._actionButtonText;
     }
   }
-
-
 
   setSubmitAction(action) {
     // takes function as argument

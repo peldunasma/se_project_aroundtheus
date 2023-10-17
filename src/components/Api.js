@@ -1,7 +1,7 @@
 export default class Api {
     constructor({baseUrl, headers}) {
         this._baseUrl = baseUrl; 
-        this.headers = headers; 
+        this._headers = headers; 
     }
 
     _checkServerResponse(res) {
@@ -12,9 +12,7 @@ export default class Api {
 
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
-          headers: {
-            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9"
-          }
+          headers: this._headers,
         }).then(this._checkServerResponse);  
       }
     
@@ -29,10 +27,7 @@ export default class Api {
       editProfile(data) {
         return fetch(`${this._baseUrl}/users/me`, {
           method: "PATCH",
-          headers: {
-            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
-            "Content-Type": "application/json"
-          }, 
+          headers: this._headers,
           //convert object to string
           body: JSON.stringify({
             name: data.name,  
@@ -44,10 +39,7 @@ export default class Api {
       updateAvatar(data) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
           method: "PATCH",
-          headers: {
-            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
-            "Content-Type": "application/json"   
-          }, 
+          headers: this._headers,
             body: JSON.stringify({avatar: data.link
             }), 
         }) .then(this._checkServerResponse);
@@ -56,10 +48,7 @@ export default class Api {
       createNewCard(initialCards) {
         return fetch(`${this._baseUrl}/cards`, {
           method: "POST",
-          headers: {
-            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
-            "Content-Type": "application/json"
-          }, 
+          headers: this._headers,
           body: JSON.stringify({
             name: initialCards.name, 
             link: initialCards.link
@@ -71,30 +60,21 @@ export default class Api {
       deleteCard(id) {
         return fetch(`${this._baseUrl}/cards/${id}`, {
           method: "DELETE",
-          headers: {
-            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
-            "Content-Type": "application/json"
-          }
+          headers: this._headers,
         }).then(this._checkServerResponse);
       }
 
       likeCard(_id) {
         return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
           method: "PUT",
-          headers: {
-            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
-            "Content-Type": "application/json"
-          }
+          headers: this._headers,
         }).then(this._checkServerResponse);  
       }
 
       dislikeCard(_id) {
         return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
           method: "DELETE",
-          headers: {
-            authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
-            "Content-Type": "application/json"
-          }
+          headers: this._headers,
         }).then(this._checkServerResponse);   
       }
       

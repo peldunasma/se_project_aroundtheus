@@ -7,7 +7,25 @@ import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import API from "../components/Api.js";
 import PopupWithFormSubmit from "../components/PopupWithFormSubmit.js";
-
+// import {
+//   api,
+//   userData,
+//   cardTemplate,
+//   profileEditModal,
+//   profileAddModal,
+//   profileAvatarModal,
+//   profileEditForm,
+//   addNewCardForm,
+//   editAvatarElement,
+//   profileEditBtn,
+//   addNewCardBtn,
+//   profileNameInput,
+//   profileDescriptionInput,
+//   config,
+//   addCardFormValidator,
+//   editCardFormValidator,
+//   editAvatarValidator,
+// } from "../pages/utils/constants.js";
 
 /* -------------------------------------------------------------------------- */
 /*                                Constants                                   */
@@ -15,7 +33,10 @@ import PopupWithFormSubmit from "../components/PopupWithFormSubmit.js";
 
 const api = new API({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  authToken: "f01bb77e-1c08-4def-8c31-263c2557aed9",
+  headers: {
+    authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
+    "Content-Type": "application/json",
+  },
 });
 
 const userData = new UserInfo(
@@ -36,7 +57,7 @@ const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addNewCardForm = profileAddModal.querySelector(".modal__form");
 const editAvatarElement = profileAvatarModal.querySelector(".modal__form");
 
-//Buttons 
+//Buttons
 
 const profileEditBtn = document.querySelector("#profile-edit-button");
 const addNewCardBtn = document.querySelector("#profile-add-button");
@@ -47,7 +68,6 @@ const profileNameInput = profileEditForm.querySelector("#profile-name-input");
 const profileDescriptionInput = profileEditForm.querySelector(
   "#profile-description-input"
 );
-
 
 /* -------------------------------------------------------------------------- */
 /*                              Render Cards                                  */
@@ -97,8 +117,8 @@ editAvatarValidator.enableValidation();
 /* -------------------------------------------------------------------------- */
 
 let cardSection;
-Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
-  ([data, initialCards]) => {
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([data, initialCards]) => {
     userData.setUserInfo(data.name, data.about);
     userData.setUserAvatar(data.avatar);
     cardSection = new Section(
@@ -112,8 +132,10 @@ Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
       ".cards__list"
     );
     cardSection.renderItems();
-  }
-);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 /* -------------------------------------------------------------------------- */
 /*                           Update Avatar Image                              */
@@ -126,19 +148,19 @@ const editAvatarForm = new PopupWithForm("#profile-image-modal", (avatar) => {
     .updateAvatar(avatar)
     .then((userInfo) => {
       userData.setUserAvatar(userInfo.avatar);
-      // editAvatarForm.setActionText(false);
-      document.querySelector('#modal-avatar-submit').textContent = "Save";
+      document.querySelector("#modal-avatar-submit").textContent = "Save";
       editAvatarForm.close();
     })
     .catch((err) => {
       console.error(err);
     })
-    .finally(() => profileForm.setActionText(false));
+    .finally(() => editAvatarForm.setActionText(false));
 });
 editAvatarForm.setEventListeners();
 
 const avatarButton = document.querySelector(".avatar-edit-button");
 avatarButton.addEventListener("click", () => {
+  editAvatarValidator.toggleButtonState();
   editAvatarForm.open();
 });
 
@@ -235,20 +257,19 @@ deleteConfirmationModal.setEventListeners();
 // pass this to card class
 function handleDeleteClick(card) {
   deleteConfirmationModal.open();
-  //asks user if they want to delete 
+  //asks user if they want to delete
   deleteConfirmationModal.setSubmitAction(() => {
     // handle card deletion
-    debugger;
-    deleteConfirmationModal.setActionText(true, "Deleting...");
+    deleteConfirmationModal.setActionText(true);
     api
-    .deleteCard(card.id)
-    .then(() => {
-      deleteConfirmationModal.close();
-      card.deleteCard();
-    })
-    .catch((err) => {
-      console.error(err);
-    })
-    .finally(() => deleteConfirmationModal.setActionText(false));
-  })
+      .deleteCard(card.id)
+      .then(() => {
+        deleteConfirmationModal.close();
+        card.deleteCard();
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => deleteConfirmationModal.setActionText(false));
+  });
 }
