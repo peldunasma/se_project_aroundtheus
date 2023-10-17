@@ -8,8 +8,6 @@ import UserInfo from "../components/UserInfo.js";
 import API from "../components/Api.js";
 import PopupWithFormSubmit from "../components/PopupWithFormSubmit.js";
 import {
-  api,
-  userData,
   cardTemplate,
   profileEditModal,
   profileAddModal,
@@ -22,52 +20,25 @@ import {
   profileNameInput,
   profileDescriptionInput,
   config,
-  addCardFormValidator,
-  editCardFormValidator,
-  editAvatarValidator,
 } from "../utils/constants.js";
 
 /* -------------------------------------------------------------------------- */
 /*                                Constants                                   */
 /* -------------------------------------------------------------------------- */
 
-// const api = new API({
-//   baseUrl: "https://around-api.en.tripleten-services.com/v1",
-//   headers: {
-//     authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
-//     "Content-Type": "application/json",
-//   },
-// });
+const api = new API({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
+    "Content-Type": "application/json",
+  },
+});
 
-// const userData = new UserInfo(
-//   ".profile__name",
-//   ".profile__description",
-//   ".profile__image"
-// );
-
-// const cardTemplate =
-//   document.querySelector("#card-template").content.firstElementChild;
-
-// // Wrappers
-
-// const profileEditModal = document.querySelector("#profile-edit-modal");
-// const profileAddModal = document.querySelector("#profile-add-modal");
-// const profileAvatarModal = document.querySelector("#profile-image-modal");
-// const profileEditForm = profileEditModal.querySelector(".modal__form");
-// const addNewCardForm = profileAddModal.querySelector(".modal__form");
-// const editAvatarElement = profileAvatarModal.querySelector(".modal__form");
-
-// //Buttons
-
-// const profileEditBtn = document.querySelector("#profile-edit-button");
-// const addNewCardBtn = document.querySelector("#profile-add-button");
-
-// //Inputs
-
-// const profileNameInput = profileEditForm.querySelector("#profile-name-input");
-// const profileDescriptionInput = profileEditForm.querySelector(
-//   "#profile-description-input"
-// );
+const userData = new UserInfo(
+  ".profile__name",
+  ".profile__description",
+  ".profile__image"
+);
 
 /* -------------------------------------------------------------------------- */
 /*                              Render Cards                                  */
@@ -94,23 +65,15 @@ function renderCard(cardData) {
 /*                              Form Validator                                */
 /* -------------------------------------------------------------------------- */
 
-// const config = {
-//   formSelector: ".modal__form",
-//   inputSelector: ".modal__input",
-//   submitButtonSelector: ".modal__button",
-//   inactiveButtonClass: "modal__button_disabled",
-//   inputErrorClass: "modal__input_type_error",
-//   errorClass: "modal__error_visible",
-// };
 
-// const addCardFormValidator = new FormValidator(config, addNewCardForm);
-// addCardFormValidator.enableValidation();
+const addCardFormValidator = new FormValidator(config, addNewCardForm);
+addCardFormValidator.enableValidation();
 
-// const editCardFormValidator = new FormValidator(config, profileEditForm);
-// editCardFormValidator.enableValidation();
+const editCardFormValidator = new FormValidator(config, profileEditForm);
+editCardFormValidator.enableValidation();
 
-// const editAvatarValidator = new FormValidator(config, editAvatarElement);
-// editAvatarValidator.enableValidation();
+const editAvatarValidator = new FormValidator(config, editAvatarElement);
+editAvatarValidator.enableValidation();
 
 /* -------------------------------------------------------------------------- */
 /*                      Section class and Promise                             */

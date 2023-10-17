@@ -1,17 +1,3 @@
-export const api = new API({
-    baseUrl: "https://around-api.en.tripleten-services.com/v1",
-    headers: {
-      authorization: "f01bb77e-1c08-4def-8c31-263c2557aed9",
-      "Content-Type": "application/json",
-    },
-  });
-  
-  export const userData = new UserInfo(
-    ".profile__name",
-    ".profile__description",
-    ".profile__image"
-  );
-  
   export const cardTemplate =
     document.querySelector("#card-template").content.firstElementChild;
   
@@ -36,10 +22,6 @@ export const api = new API({
     "#profile-description-input"
   );
 
-/* -------------------------------------------------------------------------- */
-/*                              Form Validator                                */
-/* -------------------------------------------------------------------------- */
-
 export const config = {
     formSelector: ".modal__form",
     inputSelector: ".modal__input",
@@ -49,11 +31,3 @@ export const config = {
     errorClass: "modal__error_visible",
   };
   
-  export const addCardFormValidator = new FormValidator(config, addNewCardForm);
-  addCardFormValidator.enableValidation();
-  
-  export const editCardFormValidator = new FormValidator(config, profileEditForm);
-  editCardFormValidator.enableValidation();
-  
-  export const editAvatarValidator = new FormValidator(config, editAvatarElement);
-  editAvatarValidator.enableValidation();
