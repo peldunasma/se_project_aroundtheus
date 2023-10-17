@@ -5,13 +5,38 @@
     margin: 40px auto;
     align-items: center; 
  }
+ .profile__image-container{
+    display: flex;
+ }
  
+ .profile__image-container:hover .profile__image {
+    opacity: 0.6; 
+    transition: 0.3s ease;
+  }
+
+  .avatar-edit-button{
+    background: transparent url(../images/edit-pencil.svg) center no-repeat;
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    visibility: hidden;
+    border: none;
+  }
+
+  .profile__image-container:hover .avatar-edit-button {
+    cursor: pointer;
+    visibility: visible;
+  }
+
  .profile__image{
-     object-fit: contain;
+     object-fit: cover;
      object-position: 50% 50%;
      border-radius: 50%;
      flex-shrink: 0;
      background-repeat: no-repeat;
+     width: 120px;
+     height: 120px;
  }
  
  .profile__info{

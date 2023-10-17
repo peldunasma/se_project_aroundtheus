@@ -16,7 +16,13 @@
 
     <main class="content">
       <section class="profile">
-        <img class="profile__image" src="<%=require('./images/jacques-cousteau-2.jpg')%>"  alt="Avatar" />
+        <div class ="profile__image-container">
+        <img class="profile__image" 
+        src="<%=require('./images/jacques-cousteau-2.jpg')%>"  
+        alt="Avatar" 
+        />
+        <button class="avatar-edit-button"></button>
+        </div>
         <div class="profile__info">
           <h1 class="profile__name">Jacques Cousteau</h1>
           <button class="profile__edit-button" id="profile-edit-button" type="button"></button>
@@ -72,6 +78,31 @@
         <p class="modal__image-description"></p>
       </div>
     </div>
+
+     <!-- update profile photo modal -->
+     <div class="modal" id="profile-image-modal">
+      <div class="modal__container">
+        <button class="modal__close"></button>
+        <form class="modal__form" id="edit-avatar-form">
+          <h2 class="modal__heading" id="modal-avatar-heading">Change profile picture</h2>
+          <input type="url" id="modal-profile-link" name="link" class="modal__input modal__avatar_link" placeholder="Image link" required/>
+          <span class="modal__error modal__error_visable" id="modal-profile-link-error"></span>
+          <button class="modal__button" id="modal-avatar-submit" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- confirmation modal -->
+    <div class="modal" id="delete-card-modal">
+      <div class="modal__container modal__container_confirm">
+        <button class="modal__close"></button>
+        <form class="modal__form">
+          <h2 class="modal__heading" >Are you sure?</h2>
+          <button class="modal__button" type="submit">Yes</button>
+        </form>
+      </div>
+    </div>
+
     <template id="card-template">
       <li class="card">
             <img src="#" alt="" class="card__image" />
