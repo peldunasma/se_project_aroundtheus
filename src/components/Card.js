@@ -23,11 +23,9 @@ export default class Card {
 
   _setEventListeners() {
     //".card__like-button"
-    this._cardElement
-      .querySelector(".card__like-button")
-      .addEventListener("click", () => {
-        this._handleLikeClick(this);
-      });
+    this._likeButton.addEventListener("click", () => {
+      this._handleLikeClick(this);
+    });
 
     //".card__delete-button"
     this._cardElement
