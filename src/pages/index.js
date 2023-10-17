@@ -111,7 +111,6 @@ const editAvatarForm = new PopupWithForm("#profile-image-modal", (avatar) => {
     .updateAvatar(avatar)
     .then((userInfo) => {
       userData.setUserAvatar(userInfo.avatar);
-      document.querySelector("#modal-avatar-submit").textContent = "Save";
       editAvatarForm.close();
     })
     .catch((err) => {
